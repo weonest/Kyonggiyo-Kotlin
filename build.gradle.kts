@@ -33,11 +33,24 @@ subprojects {
     apply {
         plugin("kotlin")
         plugin("kotlin-kapt")
+        plugin("kotlin-noarg")
         plugin("kotlin-spring")
         plugin("java")
         plugin("java-test-fixtures")
         plugin("org.springframework.boot")
         plugin("io.spring.dependency-management")
+    }
+
+    noArg {
+        annotation("jakarta.persistence.Entity")
+        annotation("jakarta.persistence.MappedSuperclass")
+        annotation("jakarta.persistence.Embeddable")
+    }
+
+    allOpen {
+        annotation("jakarta.persistence.Entity")
+        annotation("jakarta.persistence.MappedSuperclass")
+        annotation("jakarta.persistence.Embeddable")
     }
 
     configurations {
