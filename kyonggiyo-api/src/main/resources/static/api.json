@@ -1,0 +1,1200 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Kyonggiyo API Document",
+    "description" : "경기요 API 문서",
+    "version" : "1.1"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:8080"
+  }, {
+    "url" : "https://dev.kyonggiyo.site"
+  } ],
+  "tags" : [ ],
+  "paths" : {
+    "/api/v1/candidates" : {
+      "get" : {
+        "tags" : [ "후보" ],
+        "summary" : "상태별 조회",
+        "description" : "상태별 조회",
+        "operationId" : "find-all-by-status",
+        "parameters" : [ {
+          "name" : "status",
+          "in" : "query",
+          "description" : "상태",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "페이지",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "액세스 토큰",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Bearer AccessToken"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200",
+            "content" : {
+              "application/json;charset=UTF-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SliceResponse<CandidateResponse>"
+                },
+                "examples" : {
+                  "find-all-by-status" : {
+                    "value" : "{\"data\":[{\"id\":5319,\"name\":\"KDA\",\"category\":\"ASIAN\",\"contact\":\"LFZPROXX\",\"address\":\"CTPAYDQV\",\"lat\":5447.439905441314,\"lng\":2840.980143095648,\"reason\":\"OAEJ\",\"createdAt\":\"2005-05-07T22:17:42.89084858\",\"requesterId\":6949},{\"id\":32,\"name\":\"NVPA\",\"category\":\"KOREAN\",\"contact\":\"PNECERPPP\",\"address\":\"ZRDVGA\",\"lat\":3570.382405857613,\"lng\":6674.186807275858,\"reason\":\"TOANBMB\",\"createdAt\":\"2022-05-29T02:49:14.477527716\",\"requesterId\":5863}],\"numberOfElements\":2,\"hasNext\":false}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "후보" ],
+        "summary" : "후보 생성",
+        "description" : "후보 생성",
+        "operationId" : "create-candidate",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "액세스 토큰",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Bearer AccessToken"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json;charset=UTF-8" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CandidateCreateRequest"
+              },
+              "examples" : {
+                "create-candidate" : {
+                  "value" : "{\"name\":\"XCSWW\",\"category\":\"JAPANESE\",\"contact\":\"LHTEBYCNM\",\"address\":\"UATSXZ\",\"lat\":3847.290732661218,\"lng\":5700.454316555683,\"reason\":\"EMZ\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "200"
+          }
+        }
+      }
+    },
+    "/api/v1/restaurants" : {
+      "post" : {
+        "tags" : [ "식당" ],
+        "summary" : "식당 생성",
+        "description" : "식당 생성",
+        "operationId" : "restaurant-create",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "액세스 토큰",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Bearer AccessToken"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json;charset=UTF-8" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RestaurantCreateRequest"
+              },
+              "examples" : {
+                "restaurant-create" : {
+                  "value" : "{\"name\":\"EKFU\",\"category\":\"CAFE\",\"contact\":\"DGX\",\"address\":\"XPRMAYPGQ\",\"lat\":4644.483923311002,\"lng\":6914.57675633728,\"reason\":\"JTP\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "200"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout" : {
+      "get" : {
+        "tags" : [ "인증인가" ],
+        "summary" : "소셜 로그아웃",
+        "description" : "소셜 로그아웃",
+        "operationId" : "auth-logout",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "액세스 토큰",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Bearer AccessToken"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204"
+          }
+        }
+      }
+    },
+    "/api/v1/candidates/{candidateId}" : {
+      "post" : {
+        "tags" : [ "후보" ],
+        "summary" : "후보 승인",
+        "description" : "후보 승인",
+        "operationId" : "accept-candidate",
+        "parameters" : [ {
+          "name" : "candidateId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "액세스 토큰",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Bearer AccessToken"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "후보" ],
+        "summary" : "후보 삭제",
+        "description" : "후보 삭제",
+        "operationId" : "delete-candidate",
+        "parameters" : [ {
+          "name" : "candidateId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "액세스 토큰",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Bearer AccessToken"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "후보" ],
+        "summary" : "후보 수정",
+        "description" : "후보 수정",
+        "operationId" : "update-candidate",
+        "parameters" : [ {
+          "name" : "candidateId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "액세스 토큰",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Bearer AccessToken"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json;charset=UTF-8" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CandidateUpdateRequest"
+              },
+              "examples" : {
+                "update-candidate" : {
+                  "value" : "{\"name\":\"IZVPXCG\",\"category\":\"BAKERY\",\"contact\":\"XDLCO\",\"address\":\"CSBKZP\",\"lat\":8830.563376639417,\"lng\":8469.200764771635,\"reason\":\"GTDVV\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "200"
+          }
+        }
+      }
+    },
+    "/api/v1/images/presignedUrl" : {
+      "post" : {
+        "tags" : [ "이미지" ],
+        "summary" : "PresignedUrl 발급",
+        "description" : "PresignedUrl 발급",
+        "operationId" : "generate-presignedUrl",
+        "requestBody" : {
+          "content" : {
+            "application/json;charset=UTF-8" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/api-v1-images-presignedUrl1743070827"
+              },
+              "examples" : {
+                "generate-presignedUrl" : {
+                  "value" : "{\"filename\":\"image.jpg\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "200",
+            "content" : {
+              "application/json;charset=UTF-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/api-v1-images-presignedUrl-1542744718"
+                },
+                "examples" : {
+                  "generate-presignedUrl" : {
+                    "value" : "{\"presignedUrl\":\"url\"}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/images/{imageId}" : {
+      "delete" : {
+        "tags" : [ "이미지" ],
+        "summary" : "이미지 삭제",
+        "description" : "이미지 삭제",
+        "operationId" : "delete-images",
+        "parameters" : [ {
+          "name" : "imageId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json;charset=UTF-8" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/api-v1-images-imageId-713779257"
+              },
+              "examples" : {
+                "delete-images" : {
+                  "value" : "{\"id\":1,\"key\":\"image key\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "204" : {
+            "description" : "204"
+          }
+        }
+      }
+    },
+    "/api/v1/restaurants/markers" : {
+      "get" : {
+        "tags" : [ "식당" ],
+        "summary" : "전체 식당 마커 조회",
+        "description" : "전체 식당 마커 조회",
+        "operationId" : "get-restaurant-marker",
+        "responses" : {
+          "200" : {
+            "description" : "200",
+            "content" : {
+              "application/json;charset=UTF-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestaurantMarkerResponses"
+                },
+                "examples" : {
+                  "get-restaurant-marker" : {
+                    "value" : "{\"data\":[{\"id\":5285,\"name\":\"INAZGF\",\"averageRating\":1534.4697,\"category\":\"KOREAN\",\"lat\":5995.378486254557,\"lng\":9945.228555498934,\"reason\":\"LOWYZNJHCE\"},{\"id\":473,\"name\":\"GDJFHEE\",\"averageRating\":1103.097,\"category\":\"INDIAN\",\"lat\":4150.706294123304,\"lng\":3503.9058496224507,\"reason\":\"BBQAOYB\"},{\"id\":7368,\"name\":\"TGWSQZTNEQ\",\"averageRating\":620.70917,\"category\":\"ALCOHOL\",\"lat\":3060.4144184120123,\"lng\":6136.876008418438,\"reason\":\"FHYAQ\"},{\"id\":8145,\"name\":\"SROFK\",\"averageRating\":1492.4185,\"category\":\"CAFE\",\"lat\":529.4405769745786,\"lng\":5836.946109373716,\"reason\":\"WUDHUV\"},{\"id\":3796,\"name\":\"CMQNTVPY\",\"averageRating\":9268.567,\"category\":\"CHICKEN\",\"lat\":4535.774737404152,\"lng\":3577.2916314342474,\"reason\":\"RXM\"},{\"id\":2070,\"name\":\"HZFEBYPWRS\",\"averageRating\":4171.381,\"category\":\"INDIAN\",\"lat\":3686.9912536388574,\"lng\":9734.138987935108,\"reason\":\"UNO\"}],\"size\":6}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/profile" : {
+      "post" : {
+        "tags" : [ "유저" ],
+        "summary" : "유저 생성",
+        "description" : "유저 생성",
+        "operationId" : "user-create",
+        "requestBody" : {
+          "content" : {
+            "application/json;charset=UTF-8" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UserCreateRequest"
+              },
+              "examples" : {
+                "user-create" : {
+                  "value" : "{\"accountId\":5089,\"nickname\":\"OSPT\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "201",
+            "headers" : {
+              "Location" : {
+                "description" : "로그인 URI",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login/{platform}" : {
+      "get" : {
+        "tags" : [ "인증인가" ],
+        "summary" : "플랫폼 인가코드 요청 URL 불러오기",
+        "description" : "플랫폼 인가코드 요청 URL 불러오기",
+        "operationId" : "get-authCodeRequestUrl",
+        "parameters" : [ {
+          "name" : "platform",
+          "in" : "path",
+          "description" : "소셜 로그인 플랫폼",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "201",
+            "headers" : {
+              "Location" : {
+                "description" : "인가코드 요청 URL",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/restaurants/markers/filter" : {
+      "get" : {
+        "tags" : [ "식당" ],
+        "summary" : "식당 카테고리 필터링",
+        "description" : "식당 카테고리 필터링",
+        "operationId" : "get-restaurant-marker-filter",
+        "parameters" : [ {
+          "name" : "categories",
+          "in" : "query",
+          "description" : "카테고리 항목",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200",
+            "content" : {
+              "application/json;charset=UTF-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestaurantMarkerResponses"
+                },
+                "examples" : {
+                  "get-restaurant-marker-filter" : {
+                    "value" : "{\"data\":[{\"id\":6168,\"name\":\"ZBKR\",\"averageRating\":6990.315,\"category\":\"INDIAN\",\"address\":\"UYNNGO\",\"lat\":1598.7229078815499,\"lng\":7636.152068581117},{\"id\":3083,\"name\":\"JZX\",\"averageRating\":3419.2473,\"category\":\"CHINESE\",\"address\":\"JDPFGRACDS\",\"lat\":9341.686407423244,\"lng\":1964.7593163994104}],\"size\":2}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/restaurants/markers/search" : {
+      "get" : {
+        "tags" : [ "식당" ],
+        "summary" : "식당 키워드 검색 (이름 or 리뷰 내용)",
+        "description" : "식당 키워드 검색 (이름 or 리뷰 내용)",
+        "operationId" : "get-restaurant-marker-search",
+        "parameters" : [ {
+          "name" : "keyword",
+          "in" : "query",
+          "description" : "검색 키워드",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200",
+            "content" : {
+              "application/json;charset=UTF-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestaurantMarkerResponses"
+                },
+                "examples" : {
+                  "get-restaurant-marker-search" : {
+                    "value" : "{\"data\":[{\"id\":2810,\"name\":\"TVLNMLYMB\",\"averageRating\":4605.3345,\"category\":\"ALCOHOL\",\"address\":\"IIY\",\"lat\":3538.14271336811,\"lng\":2454.3735373188742},{\"id\":1215,\"name\":\"LMNUOY\",\"averageRating\":3705.6853,\"category\":\"FLOUR\",\"address\":\"ERQJMW\",\"lat\":3918.213261409128,\"lng\":5046.3560193480935},{\"id\":1278,\"name\":\"EKTFCWENOR\",\"averageRating\":687.16614,\"category\":\"KOREAN\",\"address\":\"UGJ\",\"lat\":3513.695040451274,\"lng\":3826.633962038681},{\"id\":6342,\"name\":\"WDIW\",\"averageRating\":823.4771,\"category\":\"CAFE\",\"address\":\"OEDDFVA\",\"lat\":8966.130662681786,\"lng\":2236.8128347268794},{\"id\":2732,\"name\":\"FHELAHQTNB\",\"averageRating\":4140.269,\"category\":\"JAPANESE\",\"address\":\"IUPDCGS\",\"lat\":8617.371372427266,\"lng\":5399.848878200623},{\"id\":6325,\"name\":\"HIE\",\"averageRating\":5101.229,\"category\":\"FLOUR\",\"address\":\"XOWMYLP\",\"lat\":3822.54322327243,\"lng\":5247.846656183792}],\"size\":6}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/restaurants/markers/{restaurantId}" : {
+      "get" : {
+        "tags" : [ "식당" ],
+        "summary" : "식당 상세 조회",
+        "description" : "식당 상세 조회",
+        "operationId" : "get-restaurant-detail",
+        "parameters" : [ {
+          "name" : "restaurantId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200",
+            "content" : {
+              "application/json;charset=UTF-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestaurantResponse"
+                },
+                "examples" : {
+                  "get-restaurant-detail" : {
+                    "value" : "{\"id\":7519,\"name\":\"KCUELWBM\",\"category\":\"INDIAN\",\"contact\":\"NTALX\",\"address\":\"RTIINGHO\",\"lat\":1512.8443664471395,\"lng\":4994.744949145572,\"reason\":\"YNKASFJ\",\"averageRating\":8918.569,\"reviews\":[{\"id\":5978,\"rating\":4113,\"content\":\"OQVEVIEVSI\",\"createdAt\":\"2080-03-08T02:02:34.373525133\",\"reviewer\":{\"id\":2097,\"nickname\":\"XYJSY\"},\"images\":[{\"id\":2638,\"imageUrl\":\"ZUQZUE\",\"key\":\"AXTJU\"},{\"id\":9801,\"imageUrl\":\"TERMCBUDIP\",\"key\":\"RFOCPSWIM\"},{\"id\":1062,\"imageUrl\":\"CFHGAG\",\"key\":\"FVAJDE\"},{\"id\":2854,\"imageUrl\":\"XTCZIZN\",\"key\":\"WHFIRW\"}]},{\"id\":9738,\"rating\":4711,\"content\":\"HUPSPS\",\"createdAt\":\"2011-12-11T19:45:52.824745902\",\"reviewer\":{\"id\":7116,\"nickname\":\"ZYYHBEGPW\"},\"images\":[{\"id\":1263,\"imageUrl\":\"KIYM\",\"key\":\"NTCLTYVG\"},{\"id\":8895,\"imageUrl\":\"ZYTIIDMAO\",\"key\":\"ZURWURM\"},{\"id\":7067,\"imageUrl\":\"GUWIVOYBBC\",\"key\":\"TCFO\"}]},{\"id\":8422,\"rating\":2190,\"content\":\"HRIVJYS\",\"createdAt\":\"2023-02-15T05:41:46.040449725\",\"reviewer\":{\"id\":867,\"nickname\":\"VNIREUR\"},\"images\":[{\"id\":7766,\"imageUrl\":\"FXNHGECAN\",\"key\":\"SFUBCHIXNJ\"},{\"id\":2882,\"imageUrl\":\"JESGKEV\",\"key\":\"BZUMQBKM\"}]},{\"id\":4454,\"rating\":3005,\"content\":\"DXVP\",\"createdAt\":\"2006-11-12T05:28:24.256672764\",\"reviewer\":{\"id\":3107,\"nickname\":\"XHHBG\"},\"images\":[{\"id\":4642,\"imageUrl\":\"PDOEHMBDMY\",\"key\":\"QLWN\"},{\"id\":8466,\"imageUrl\":\"EJRJEYDITE\",\"key\":\"TZKQX\"},{\"id\":5254,\"imageUrl\":\"ZMCAOPPCO\",\"key\":\"SISZO\"},{\"id\":8558,\"imageUrl\":\"WHDWYDTS\",\"key\":\"SXX\"},{\"id\":8774,\"imageUrl\":\"WLDR\",\"key\":\"ORSCY\"},{\"id\":5576,\"imageUrl\":\"ZTNMHEVRZB\",\"key\":\"WSKXCTXU\"}]},{\"id\":1776,\"rating\":8326,\"content\":\"DQTAEEKGUS\",\"createdAt\":\"2076-12-17T20:45:45.186994713\",\"reviewer\":{\"id\":9084,\"nickname\":\"WAR\"},\"images\":[{\"id\":2839,\"imageUrl\":\"QWRU\",\"key\":\"FHMQ\"},{\"id\":5686,\"imageUrl\":\"LXUQJIFQWC\",\"key\":\"ZGVUMLB\"},{\"id\":4493,\"imageUrl\":\"UTJPYMP\",\"key\":\"AVWRMGLM\"},{\"id\":1276,\"imageUrl\":\"RYAFCDABRO\",\"key\":\"JYMKD\"},{\"id\":1397,\"imageUrl\":\"TMXY\",\"key\":\"QCPGIWS\"}]}]}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/restaurants/{restaurantId}/reviews" : {
+      "post" : {
+        "tags" : [ "리뷰" ],
+        "summary" : "리뷰 생성",
+        "description" : "리뷰 생성",
+        "operationId" : "review-create",
+        "parameters" : [ {
+          "name" : "restaurantId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "액세스 토큰",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Bearer AccessToken"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json;charset=UTF-8" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReviewCreateRequest"
+              },
+              "examples" : {
+                "review-create" : {
+                  "value" : "{\"rating\":4722,\"content\":\"MNAQC\",\"imageUrls\":[\"STICCT\",\"RHCFIK\",\"PVPKB\",\"JLQTKHUSVU\",\"ADHJLCEQPC\",\"NMP\"]}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "200"
+          }
+        }
+      }
+    },
+    "/api/v1/users/profile/nickname" : {
+      "get" : {
+        "tags" : [ "유저" ],
+        "summary" : "유저 닉네임 유효성 검사",
+        "description" : "유저 닉네임 유효성 검사",
+        "operationId" : "user-validate-nickname",
+        "parameters" : [ {
+          "name" : "nickname",
+          "in" : "query",
+          "description" : "닉네임",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200",
+            "content" : {
+              "application/json;charset=UTF-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidateNicknameResponse"
+                },
+                "examples" : {
+                  "user-validate-nickname" : {
+                    "value" : "{\"flag\":true}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login/{platform}/callback" : {
+      "get" : {
+        "tags" : [ "인증인가" ],
+        "summary" : "소셜 로그인",
+        "description" : "소셜 로그인",
+        "operationId" : "auth-login",
+        "parameters" : [ {
+          "name" : "platform",
+          "in" : "path",
+          "description" : "소셜 로그인 플랫폼",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "code",
+          "in" : "query",
+          "description" : "플랫폼 인가 코드",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200",
+            "content" : {
+              "application/json;charset=UTF-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LogInResponse"
+                },
+                "examples" : {
+                  "auth-login" : {
+                    "value" : "{\"accountId\":2824,\"token\":{\"accessToken\":\"XCVJLJ\",\"accessTokenMaxAge\":120,\"refreshTokenMaxAge\":1518}}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/restaurants/{restaurantId}/reviews/{reviewId}" : {
+      "delete" : {
+        "tags" : [ "리뷰" ],
+        "summary" : "리뷰 삭제",
+        "description" : "리뷰 삭제",
+        "operationId" : "review-delete",
+        "parameters" : [ {
+          "name" : "restaurantId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "reviewId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "액세스 토큰",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Bearer AccessToken"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "리뷰" ],
+        "summary" : "리뷰 수정",
+        "description" : "리뷰 수정",
+        "operationId" : "review-update",
+        "parameters" : [ {
+          "name" : "restaurantId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "reviewId",
+          "in" : "path",
+          "description" : "",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "액세스 토큰",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "Bearer AccessToken"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json;charset=UTF-8" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReviewUpdateRequest"
+              },
+              "examples" : {
+                "review-update" : {
+                  "value" : "{\"rating\":4026,\"content\":\"OBBLOLYOU\",\"imageUrls\":[\"QCOTCWVJ\",\"CIH\",\"UNJFLPJZB\",\"EZUGDALVZ\",\"TCVOKIHDUG\"]}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "200"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "RestaurantMarkerResponses" : {
+        "title" : "RestaurantMarkerResponses",
+        "type" : "object",
+        "properties" : {
+          "size" : {
+            "type" : "number",
+            "description" : "데이터 수"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "address" : {
+                  "type" : "string",
+                  "description" : "추천 이유"
+                },
+                "lng" : {
+                  "type" : "number",
+                  "description" : "경도"
+                },
+                "averageRating" : {
+                  "type" : "number",
+                  "description" : "식당 평점"
+                },
+                "name" : {
+                  "type" : "string",
+                  "description" : "식당 이름"
+                },
+                "id" : {
+                  "type" : "number",
+                  "description" : "식별자"
+                },
+                "category" : {
+                  "type" : "string",
+                  "description" : "식당 카테고리"
+                },
+                "lat" : {
+                  "type" : "number",
+                  "description" : "위도"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CandidateUpdateRequest" : {
+        "title" : "CandidateUpdateRequest",
+        "type" : "object",
+        "properties" : {
+          "reason" : {
+            "type" : "string",
+            "description" : "추천 이유"
+          },
+          "address" : {
+            "type" : "string",
+            "description" : "주소"
+          },
+          "lng" : {
+            "type" : "number",
+            "description" : "경도"
+          },
+          "contact" : {
+            "type" : "string",
+            "description" : "연락처"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "식당 이름"
+          },
+          "category" : {
+            "type" : "string",
+            "description" : "카테고리"
+          },
+          "lat" : {
+            "type" : "number",
+            "description" : "위도"
+          }
+        }
+      },
+      "ValidateNicknameResponse" : {
+        "title" : "ValidateNicknameResponse",
+        "type" : "object",
+        "properties" : {
+          "flag" : {
+            "type" : "boolean",
+            "description" : "사용 가능 여부"
+          }
+        }
+      },
+      "SliceResponse<CandidateResponse>" : {
+        "title" : "SliceResponse<CandidateResponse>",
+        "type" : "object",
+        "properties" : {
+          "numberOfElements" : {
+            "type" : "number",
+            "description" : "조회된 데이터 수"
+          },
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "createdAt" : {
+                  "type" : "string",
+                  "description" : "생성일"
+                },
+                "reason" : {
+                  "type" : "string",
+                  "description" : "추천 이유"
+                },
+                "requesterId" : {
+                  "type" : "number",
+                  "description" : "요청자 식별자"
+                },
+                "address" : {
+                  "type" : "string",
+                  "description" : "주소"
+                },
+                "lng" : {
+                  "type" : "number",
+                  "description" : "경도"
+                },
+                "contact" : {
+                  "type" : "string",
+                  "description" : "연락처"
+                },
+                "name" : {
+                  "type" : "string",
+                  "description" : "식당 이름"
+                },
+                "id" : {
+                  "type" : "number",
+                  "description" : "식별자"
+                },
+                "category" : {
+                  "type" : "string",
+                  "description" : "카테고리"
+                },
+                "lat" : {
+                  "type" : "number",
+                  "description" : "위도"
+                }
+              }
+            }
+          },
+          "hasNext" : {
+            "type" : "boolean",
+            "description" : "다음 페이지 여부"
+          }
+        }
+      },
+      "RestaurantCreateRequest" : {
+        "title" : "RestaurantCreateRequest",
+        "type" : "object",
+        "properties" : {
+          "reason" : {
+            "type" : "string",
+            "description" : "추천 이유"
+          },
+          "address" : {
+            "type" : "string",
+            "description" : "주소"
+          },
+          "lng" : {
+            "type" : "number",
+            "description" : "경도"
+          },
+          "contact" : {
+            "type" : "string",
+            "description" : "연락처"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "식당 이름"
+          },
+          "category" : {
+            "type" : "string",
+            "description" : "카테고리"
+          },
+          "lat" : {
+            "type" : "number",
+            "description" : "위도"
+          }
+        }
+      },
+      "CandidateCreateRequest" : {
+        "title" : "CandidateCreateRequest",
+        "type" : "object",
+        "properties" : {
+          "reason" : {
+            "type" : "string",
+            "description" : "추천 이유"
+          },
+          "address" : {
+            "type" : "string",
+            "description" : "주소"
+          },
+          "lng" : {
+            "type" : "number",
+            "description" : "경도"
+          },
+          "contact" : {
+            "type" : "string",
+            "description" : "연락처"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "식당 이름"
+          },
+          "category" : {
+            "type" : "string",
+            "description" : "카테고리"
+          },
+          "lat" : {
+            "type" : "number",
+            "description" : "위도"
+          }
+        }
+      },
+      "api-v1-images-presignedUrl1743070827" : {
+        "type" : "object",
+        "properties" : {
+          "filename" : {
+            "type" : "string",
+            "description" : "파일명(확장자 포함)"
+          }
+        }
+      },
+      "api-v1-images-imageId-713779257" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "number",
+            "description" : "이미지 식별자"
+          },
+          "key" : {
+            "type" : "string",
+            "description" : "이미지 key"
+          }
+        }
+      },
+      "LogInResponse" : {
+        "title" : "LogInResponse",
+        "type" : "object",
+        "properties" : {
+          "accountId" : {
+            "type" : "number",
+            "description" : "계정 식별자"
+          },
+          "token" : {
+            "type" : "object",
+            "properties" : {
+              "refreshTokenMaxAge" : {
+                "type" : "number",
+                "description" : "리프레시 토큰 MaxAge"
+              },
+              "accessToken" : {
+                "type" : "string",
+                "description" : "액세스 토큰"
+              },
+              "accessTokenMaxAge" : {
+                "type" : "number",
+                "description" : "액세스 토큰 MaxAge"
+              },
+              "refreshToken" : {
+                "type" : "string",
+                "description" : "리프레시 토큰"
+              }
+            }
+          }
+        }
+      },
+      "UserCreateRequest" : {
+        "title" : "UserCreateRequest",
+        "type" : "object",
+        "properties" : {
+          "accountId" : {
+            "type" : "number",
+            "description" : "계정 식별자"
+          },
+          "nickname" : {
+            "type" : "string",
+            "description" : "닉네임"
+          }
+        }
+      },
+      "ReviewCreateRequest" : {
+        "title" : "ReviewCreateRequest",
+        "type" : "object",
+        "properties" : {
+          "imageUrls" : {
+            "type" : "array",
+            "description" : "이미지 주소",
+            "items" : {
+              "oneOf" : [ {
+                "type" : "object"
+              }, {
+                "type" : "boolean"
+              }, {
+                "type" : "string"
+              }, {
+                "type" : "number"
+              } ]
+            }
+          },
+          "rating" : {
+            "type" : "number",
+            "description" : "별점"
+          },
+          "content" : {
+            "type" : "string",
+            "description" : "내용"
+          }
+        }
+      },
+      "api-v1-images-presignedUrl-1542744718" : {
+        "type" : "object",
+        "properties" : {
+          "presignedUrl" : {
+            "type" : "string",
+            "description" : "PresignedUrl"
+          }
+        }
+      },
+      "RestaurantResponse" : {
+        "title" : "RestaurantResponse",
+        "type" : "object",
+        "properties" : {
+          "reason" : {
+            "type" : "string",
+            "description" : "추천 이유"
+          },
+          "address" : {
+            "type" : "string",
+            "description" : "주소"
+          },
+          "reviews" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "createdAt" : {
+                  "type" : "string",
+                  "description" : "리뷰 생성일"
+                },
+                "images" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "imageUrl" : {
+                        "type" : "string",
+                        "description" : "이미지 URL"
+                      },
+                      "id" : {
+                        "type" : "number",
+                        "description" : "이미지 URL"
+                      },
+                      "key" : {
+                        "type" : "string",
+                        "description" : "이미지 Key"
+                      }
+                    }
+                  }
+                },
+                "rating" : {
+                  "type" : "number",
+                  "description" : "리뷰 점수"
+                },
+                "reviewer" : {
+                  "type" : "object",
+                  "properties" : {
+                    "nickname" : {
+                      "type" : "string",
+                      "description" : "리뷰어 닉네임"
+                    },
+                    "id" : {
+                      "type" : "number",
+                      "description" : "리뷰어(유저) 식별자"
+                    }
+                  }
+                },
+                "id" : {
+                  "type" : "number",
+                  "description" : "리뷰 식별자"
+                },
+                "content" : {
+                  "type" : "string",
+                  "description" : "리뷰 내용"
+                }
+              }
+            }
+          },
+          "lng" : {
+            "type" : "number",
+            "description" : "경도"
+          },
+          "averageRating" : {
+            "type" : "number",
+            "description" : "식당 평점"
+          },
+          "contact" : {
+            "type" : "string",
+            "description" : "연락처"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "식당 이름"
+          },
+          "id" : {
+            "type" : "number",
+            "description" : "식당 식별자"
+          },
+          "category" : {
+            "type" : "string",
+            "description" : "카테고리"
+          },
+          "lat" : {
+            "type" : "number",
+            "description" : "위도"
+          }
+        }
+      },
+      "ReviewUpdateRequest" : {
+        "title" : "ReviewUpdateRequest",
+        "type" : "object",
+        "properties" : {
+          "imageUrls" : {
+            "type" : "array",
+            "description" : "이미지 주소",
+            "items" : {
+              "oneOf" : [ {
+                "type" : "object"
+              }, {
+                "type" : "boolean"
+              }, {
+                "type" : "string"
+              }, {
+                "type" : "number"
+              } ]
+            }
+          },
+          "rating" : {
+            "type" : "number",
+            "description" : "별점"
+          },
+          "content" : {
+            "type" : "string",
+            "description" : "내용"
+          }
+        }
+      }
+    }
+  }
+}

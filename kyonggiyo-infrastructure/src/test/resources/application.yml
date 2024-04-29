@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=MYSQL
+    username: sa
+    password:
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+oauth:
+  kakao:
+    response-type: responseType
+    client-id: clientId
+    url:
+      auth-url: authUrl
+      api-url: apiIrl
+      redirect-url: redirectUrl
+
+  naver:
+    response-type: responseType
+    client-id: clientId
+    client-secret: clientSecret
+    state: state
+    url:
+      auth-url: authUrl
+      api-url: apiUrl
+      redirect-url: redirectUrl
+
+jwt:
+  claim-id: id
+  claim-role: role
+  secret-key: secretKey
+  access-token-expire-time: 10
+  refresh-token-expire-time: 30
+
+cloud:
+  aws:
+    region: ap-northeast-2
+    credentials:
+      access-key: accessKey
+      secret-key: secretKey
+    s3:
+      bucket-name: kyonggiyo-bucket
+
+web-application: false
