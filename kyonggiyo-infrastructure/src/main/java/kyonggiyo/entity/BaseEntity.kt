@@ -1,35 +1,28 @@
-package kyonggiyo.domain;
+package kyonggiyo.entity
 
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PreUpdate;
-import lombok.Getter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import jakarta.persistence.Column
+import jakarta.persistence.MappedSuperclass
+import jakarta.persistence.PreUpdate
+import java.time.LocalDateTime
 
-import java.time.LocalDateTime;
-
-@Getter
 @MappedSuperclass
-public abstract class BaseEntity {
+abstract class BaseEntity(
+        @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP(6)")
+        var createdAt: LocalDateTime,
 
-    public BaseEntity() {
-        var now = LocalDateTime.now();
-        createdAt = createdAt != null ? createdAt : now;
-        updatedAt = updatedAt != null ? updatedAt : now;
-    }
+        @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP(6)")
+        var updatedAt: LocalDateTime
+){
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP(6)")
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP(6)")
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
+//    @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP(6)")
+//    var createdAt: LocalDateTime? = null
+//
+//    @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP(6)")
+//    var updatedAt: LocalDateTime? = null
 
     @PreUpdate
-    void preUpdate() {
-        updatedAt = LocalDateTime.now();
+    fun preUpdate() {
+        updatedAt = LocalDateTime.now()
     }
 
 }
