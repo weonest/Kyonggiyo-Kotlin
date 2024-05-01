@@ -21,7 +21,7 @@ class UserCommandService(
     private val loadAccountPort: LoadAccountPort,
     private val saveUserPort: SaveUserPort,
     private val loadUserPort: LoadUserPort,
-): CreateUserUseCase {
+): CreateUserUseCase, WithdrawUserUseCase {
 
     override fun createUser(command: UserCreateCommand): Platform {
         val account = loadAccountPort.findById(command.accountId)
@@ -34,4 +34,14 @@ class UserCommandService(
         account.registerUser(saveUserPort.save(user))
         return account.platform
     }
+
+    override fun deleteUser(command: UserDeleteCommand) {
+        val account = loadAccountPort.findById(command.accountId)
+            ?: throw NotFoundException(GlobalErrorCode.NOT_FOUND_ENTITY_EXCEPTION)
+
+        val user = loadUserPort.getById(account.userId)
+
+        user.delete()
+    }
+
 }

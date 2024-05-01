@@ -27,4 +27,10 @@ class User(
     var isDeleted: Boolean = false
         protected set
 
+    fun delete() {
+        if(!isDeleted) {
+            isDeleted = true
+        }
+    }
+
 }
