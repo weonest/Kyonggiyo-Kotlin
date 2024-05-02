@@ -1,33 +1,26 @@
-package kyonggiyo.auth.adapter;
+package kyonggiyo.auth.adapter
 
-import kyonggiyo.application.auth.port.outbound.DeleteRefreshTokenPort;
-import kyonggiyo.application.auth.port.outbound.LoadRefreshTokenPort;
-import kyonggiyo.application.auth.port.outbound.SaveRefreshTokenPort;
-import kyonggiyo.application.auth.domain.entity.RefreshToken;
-import kyonggiyo.auth.repository.RefreshTokenRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import kyonggiyo.application.auth.domain.entity.RefreshToken
+import kyonggiyo.application.auth.port.outbound.DeleteRefreshTokenPort
+import kyonggiyo.application.auth.port.outbound.LoadRefreshTokenPort
+import kyonggiyo.application.auth.port.outbound.SaveRefreshTokenPort
+import kyonggiyo.auth.repository.RefreshTokenRepository
+import org.springframework.stereotype.Repository
 
 @Repository
-@RequiredArgsConstructor
-public class RefreshTokenAdapter implements SaveRefreshTokenPort, LoadRefreshTokenPort,
-        DeleteRefreshTokenPort {
+class RefreshTokenAdapter(
+    private val refreshTokenRepository: RefreshTokenRepository
+) : SaveRefreshTokenPort, LoadRefreshTokenPort, DeleteRefreshTokenPort {
 
-    private final RefreshTokenRepository refreshTokenRepository;
-
-    @Override
-    public void save(RefreshToken refreshToken) {
-        refreshTokenRepository.save(refreshToken);
+    override fun save(refreshToken: RefreshToken) {
+        refreshTokenRepository.save(refreshToken)
     }
 
-    @Override
-    public RefreshToken getByUserId(Long userId) {
-        return refreshTokenRepository.getByUserId(userId);
+    override fun getByUserId(userId: Long): RefreshToken {
+        return refreshTokenRepository.getByUserId(userId)
     }
 
-    @Override
-    public void deleteByUserId(Long userId) {
-        refreshTokenRepository.deleteByUserId(userId);
+    override fun deleteByUserId(userId: Long) {
+        refreshTokenRepository.deleteByUserId(userId)
     }
-
 }

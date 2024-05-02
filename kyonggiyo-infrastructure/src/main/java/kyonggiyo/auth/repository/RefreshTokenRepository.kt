@@ -1,13 +1,13 @@
-package kyonggiyo.auth.repository;
+package kyonggiyo.auth.repository
 
-import kyonggiyo.application.auth.domain.entity.RefreshToken;
+import kyonggiyo.application.auth.domain.entity.RefreshToken
 
-public interface RefreshTokenRepository {
+interface RefreshTokenRepository {
 
-    void save(RefreshToken refreshToken);
+    fun save(refreshToken: RefreshToken)
 
-    RefreshToken getByUserId(Long userId);
+    fun getByUserId(userId: Long): RefreshToken
 
-    void deleteByUserId(Long userId);
+    fun deleteByUserId(userId: Long)
 
 }

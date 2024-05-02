@@ -1,43 +1,33 @@
-package kyonggiyo.auth.entity;
+package kyonggiyo.auth.entity
 
-import kyonggiyo.application.auth.domain.entity.RefreshToken;
-import lombok.Builder;
-import lombok.Getter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
+import kyonggiyo.application.auth.domain.entity.RefreshToken
+import org.springframework.data.annotation.Id
+import org.springframework.data.redis.core.RedisHash
 
-@Getter
 @RedisHash(value = "refreshToken", timeToLive = 259200)
-public class RefreshTokenEntity {
-
+class RefreshTokenEntity(
     @Id
-    private Long userId;
+    val userId: Long,
+    val value: String,
+    val expiresIn: Long,
+) {
 
-    private String value;
-
-    private long expiresIn;
-
-    @Builder
-    private RefreshTokenEntity(Long userId, String value, long expiresIn) {
-        this.userId = userId;
-        this.value = value;
-        this.expiresIn = expiresIn;
+    fun toDomain(): RefreshToken {
+        return RefreshToken(
+            userId = userId,
+            value = value,
+            expiresIn = expiresIn
+        )
     }
 
-    public static RefreshTokenEntity from(RefreshToken refreshToken) {
-        return RefreshTokenEntity.builder()
-                .userId(refreshToken.getUserId())
-                .value(refreshToken.getValue())
-                .expiresIn(refreshToken.getExpiresIn())
-                .build();
-    }
-
-    public RefreshToken toDomain() {
-        return RefreshToken.builder()
-                .userId(userId)
-                .value(value)
-                .expiresIn(expiresIn)
-                .build();
+    companion object {
+        fun from(refreshToken: RefreshToken): RefreshTokenEntity {
+            return RefreshTokenEntity(
+                userId = refreshToken.userId,
+                value = refreshToken.value,
+                expiresIn = refreshToken.expiresIn
+            )
+        }
     }
 
 }

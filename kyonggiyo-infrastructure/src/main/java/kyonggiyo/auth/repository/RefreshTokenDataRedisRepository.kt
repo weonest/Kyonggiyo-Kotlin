@@ -1,8 +1,6 @@
-package kyonggiyo.auth.repository;
+package kyonggiyo.auth.repository
 
-import kyonggiyo.auth.entity.RefreshTokenEntity;
-import org.springframework.data.repository.CrudRepository;
+import kyonggiyo.auth.entity.RefreshTokenEntity
+import org.springframework.data.repository.CrudRepository
 
-public interface RefreshTokenDataRedisRepository extends CrudRepository<RefreshTokenEntity, Long> {
-
-}
+interface RefreshTokenDataRedisRepository : CrudRepository<RefreshTokenEntity, Long>
