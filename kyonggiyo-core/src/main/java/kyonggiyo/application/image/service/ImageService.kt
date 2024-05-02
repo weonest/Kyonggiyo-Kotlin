@@ -1,53 +1,42 @@
-package kyonggiyo.application.image.service;
+package kyonggiyo.application.image.service
 
-import kyonggiyo.application.image.port.inbound.DeleteImageUseCase;
-import kyonggiyo.application.image.port.inbound.ImageDeleteCommand;
-import kyonggiyo.application.image.port.outbound.DeleteImagePort;
-import kyonggiyo.application.image.port.outbound.ImageManager;
-import kyonggiyo.application.image.port.outbound.LoadImagePort;
-import kyonggiyo.application.image.port.outbound.SaveImagePort;
-import kyonggiyo.application.image.domain.entity.Image;
-import kyonggiyo.application.image.domain.vo.ImageType;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
+import kyonggiyo.application.image.domain.entity.Image
+import kyonggiyo.application.image.domain.vo.ImageType
+import kyonggiyo.application.image.port.inbound.DeleteImageUseCase
+import kyonggiyo.application.image.port.inbound.ImageDeleteCommand
+import kyonggiyo.application.image.port.outbound.DeleteImagePort
+import kyonggiyo.application.image.port.outbound.ImageManager
+import kyonggiyo.application.image.port.outbound.LoadImagePort
+import kyonggiyo.application.image.port.outbound.SaveImagePort
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-@RequiredArgsConstructor
-public class ImageService implements DeleteImageUseCase {
-
-    private final ImageManager imageManager;
-    private final SaveImagePort saveImagePort;
-    private final LoadImagePort loadImagePort;
-    private final DeleteImagePort deleteImagePort;
+class ImageService(
+        private val imageManager: ImageManager,
+        private val saveImagePort: SaveImagePort,
+        private val loadImagePort: LoadImagePort,
+        private val deleteImagePort: DeleteImagePort
+) : DeleteImageUseCase {
 
     @Transactional
-    public void createImages(List<String> imageUrls, ImageType imageType, Long referenceId) {
-        List<Image> images = imageUrls.stream()
-                .map(v -> {
-                    String key = imageManager.extractImageKey(v);
-                    return new Image(key, imageType, referenceId);
-                })
-                .toList();
-        saveImagePort.saveAll(images);
-    }
-
-    @Override
-    @Transactional
-    public void deleteById(ImageDeleteCommand command) {
-        deleteImagePort.deleteById(command.id());
-        imageManager.deleteImage(command.key());
+    fun createImages(imageUrls: List<String>, imageType: ImageType, referenceId: Long) {
+        imageUrls.map { Image(imageManager.extractImageKey(it), imageType, referenceId) }
+                .toList()
+                .let { saveImagePort.saveAll(it) }
     }
 
     @Transactional
-    public void deleteByImageTypeAndReferenceId(ImageType imageType, Long referenceId) {
-        List<Image> images = loadImagePort.findAllByImageTypeAndReferenceId(imageType, referenceId);
-        List<Long> ids = images.stream()
-                .map(Image::getId).toList();
+    override fun deleteById(command: ImageDeleteCommand) {
+        deleteImagePort.deleteById(command.id)
+        imageManager.deleteImage(command.key)
+    }
 
-        deleteImagePort.deleteAllByIdInBatch(ids);
+    @Transactional
+    fun deleteByImageTypeAndReferenceId(imageType: ImageType, referenceId: Long) {
+        loadImagePort.findAllByImageTypeAndReferenceId(imageType, referenceId).map { it.id!! }
+                .toList()
+                .let { deleteImagePort.deleteAllByIdInBatch(it) }
     }
 
 }
