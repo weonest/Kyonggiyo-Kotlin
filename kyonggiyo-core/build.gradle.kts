@@ -23,4 +23,5 @@ dependencies {
 
     // Test Fixture
     api("org.instancio:instancio-junit:3.0.0")
+    api("com.navercorp.fixturemonkey:fixture-monkey-starter-kotlin:1.0.16")
 }
