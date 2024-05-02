@@ -6,7 +6,8 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import kyonggiyo.application.port.out.auth.SaveAccountPort
+import kyonggiyo.application.auth.port.outbound.SaveAccountPort
+import kyonggiyo.application.auth.service.AccountSignUpService
 import kyonggiyo.fixture.AccountFixtures
 
 @DisplayName("AccountSingUpServiceTest")

@@ -1,8 +1,10 @@
 package kyonggiyo.persistence.account;
 
+import kyonggiyo.account.adapter.AccountPersistenceAdapter;
+import kyonggiyo.account.repository.AccountRepository;
 import kyonggiyo.fixture.AccountFixtures;
 import kyonggiyo.persistence.AdapterTest;
-import kyonggiyo.domain.auth.Account;
+import kyonggiyo.application.auth.domain.entity.Account;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

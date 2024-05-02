@@ -4,7 +4,7 @@ import com.epages.restdocs.apispec.Schema;
 import jakarta.servlet.http.Cookie;
 import kyonggiyo.api.adapter.controller.ControllerTest;
 import kyonggiyo.application.port.in.auth.dto.LogInResponse;
-import kyonggiyo.domain.auth.Platform;
+import kyonggiyo.application.auth.domain.vo.Platform;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpHeaders;

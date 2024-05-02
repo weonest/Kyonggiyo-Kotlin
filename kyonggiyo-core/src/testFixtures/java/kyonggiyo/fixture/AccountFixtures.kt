@@ -5,8 +5,8 @@ import com.navercorp.fixturemonkey.kotlin.setExp
 import com.navercorp.fixturemonkey.kotlin.setNullExp
 import kyonggiyo.IdGenerator
 import kyonggiyo.ReflectionMonkey
-import kyonggiyo.domain.auth.Account
-import kyonggiyo.domain.auth.Platform
+import kyonggiyo.application.auth.domain.entity.Account
+import kyonggiyo.application.auth.domain.vo.Platform
 import net.jqwik.api.Arbitraries
 
 object AccountFixtures {

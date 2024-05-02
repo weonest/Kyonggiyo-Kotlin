@@ -2,7 +2,7 @@ package kyonggiyo.application.service.review;
 
 import com.github.f4b6a3.tsid.TsidCreator;
 import jakarta.persistence.EntityManager;
-import kyonggiyo.application.port.in.auth.dto.UserInfo;
+import kyonggiyo.application.auth.domain.vo.UserInfo;
 import kyonggiyo.application.port.in.review.CreateReviewUseCase;
 import kyonggiyo.application.port.in.review.DeleteReviewUseCase;
 import kyonggiyo.application.port.in.review.UpdateReviewUseCase;
@@ -15,12 +15,12 @@ import kyonggiyo.application.port.out.restaurant.review.SaveReviewPort;
 import kyonggiyo.application.port.out.user.LoadUserPort;
 import kyonggiyo.application.service.event.review.ReviewCreateEvent;
 import kyonggiyo.application.service.image.ImageService;
+import kyonggiyo.common.exception.ForbiddenException;
+import kyonggiyo.common.exception.GlobalErrorCode;
 import kyonggiyo.domain.image.ImageType;
 import kyonggiyo.domain.restaurant.Restaurant;
 import kyonggiyo.domain.review.Review;
 import kyonggiyo.domain.user.User;
-import kyonggiyo.common.exception.ForbiddenException;
-import kyonggiyo.common.exception.GlobalErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -46,7 +46,7 @@ public class ReviewCommandService implements CreateReviewUseCase, UpdateReviewUs
     public void createReview(UserInfo userInfo,
                              Long restaurantId,
                              ReviewCreateCommand command) {
-        User user = loadUserPort.getById(userInfo.userId());
+        User user = loadUserPort.getById(userInfo.userId);
         Restaurant restaurant = loadRestaurantPort.getById(restaurantId);
         Review review = Review.builder()
                 .rating(command.rating())
@@ -73,7 +73,7 @@ public class ReviewCommandService implements CreateReviewUseCase, UpdateReviewUs
                              ReviewUpdateCommand command) {
         Review review = loadReviewPort.getById(id);
 
-        validateUser(userInfo.userId(), review.getReviewerId());
+        validateUser(userInfo.userId, review.getReviewerId());
 
         review.update(command.rating(), command.content());
         review.getRestaurant().updateAverageRating();
@@ -89,7 +89,7 @@ public class ReviewCommandService implements CreateReviewUseCase, UpdateReviewUs
     @Override
     public void deleteReview(UserInfo userInfo, Long id) {
         Review review = loadReviewPort.getById(id);
-        validateUser(userInfo.userId(), review.getReviewerId());
+        validateUser(userInfo.userId, review.getReviewerId());
 
         review.deleteReview();
 

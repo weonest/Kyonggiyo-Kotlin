@@ -6,7 +6,9 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import kyonggiyo.application.port.out.auth.LoadAccountPort
+import kyonggiyo.application.auth.port.outbound.LoadAccountPort
+import kyonggiyo.application.auth.service.AccountLoginService
+import kyonggiyo.application.auth.service.AccountSignUpService
 import kyonggiyo.fixture.AccountFixtures
 import org.springframework.test.context.ContextConfiguration
 

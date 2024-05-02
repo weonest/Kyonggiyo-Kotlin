@@ -1,6 +1,6 @@
 package kyonggiyo.application.service.candidate;
 
-import kyonggiyo.application.port.in.auth.dto.UserInfo;
+import kyonggiyo.application.auth.domain.vo.UserInfo;
 import kyonggiyo.application.port.in.candidate.AcceptCandidateUseCase;
 import kyonggiyo.application.port.in.candidate.CreateCandidateUseCase;
 import kyonggiyo.application.port.in.candidate.DeleteCandidateUseCase;
@@ -11,10 +11,10 @@ import kyonggiyo.application.port.out.candidate.DeleteCandidatePort;
 import kyonggiyo.application.port.out.candidate.LoadCandidatePort;
 import kyonggiyo.application.port.out.candidate.SaveCandidatePort;
 import kyonggiyo.application.port.out.restaurant.SaveRestaurantPort;
-import kyonggiyo.domain.candidate.Candidate;
-import kyonggiyo.domain.user.Role;
 import kyonggiyo.common.exception.ForbiddenException;
 import kyonggiyo.common.exception.GlobalErrorCode;
+import kyonggiyo.domain.candidate.Candidate;
+import kyonggiyo.domain.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +32,7 @@ public class CandidateCommandService implements CreateCandidateUseCase, AcceptCa
 
     @Override
     public void createCandidate(UserInfo userInfo, CandidateCreateCommand command) {
-        Candidate candidate = command.toEntity(userInfo.userId());
+        Candidate candidate = command.toEntity(userInfo.userId);
         saveCandidatePort.save(candidate);
     }
 
@@ -56,12 +56,12 @@ public class CandidateCommandService implements CreateCandidateUseCase, AcceptCa
     @Override
     public void deleteCandidate(UserInfo userInfo, Long id) {
         Candidate candidate = loadCandidatePort.getById(id);
-        if (userInfo.role().equals(Role.ADMIN) || candidate.getRequesterId().equals(userInfo.userId())) {
+        if (userInfo.role.equals(Role.ADMIN) || candidate.getRequesterId().equals(userInfo.userId)) {
             deleteCandidatePort.deleteById(id);
             return;
         }
         throw new ForbiddenException(GlobalErrorCode.INVALID_REQUEST_EXCEPTION,
-                String.format("유저 식별자 불일치 -> %d", userInfo.userId()));
+                String.format("유저 식별자 불일치 -> %d", userInfo.userId));
     }
 
 }
