@@ -53,7 +53,7 @@ public class AuthController {
     public ResponseEntity<Void> logout(@Auth UserInfo userInfo,
                                        HttpServletRequest httpServletRequest,
                                        HttpServletResponse httpServletResponse) {
-        oAuthLogoutUseCase.logout(userInfo.userId());
+        oAuthLogoutUseCase.logout(userInfo.userId);
 
         CookieUtils.removeCookie(httpServletRequest, httpServletResponse);
 

@@ -32,7 +32,7 @@ public class CandidateCommandService implements CreateCandidateUseCase, AcceptCa
 
     @Override
     public void createCandidate(UserInfo userInfo, CandidateCreateCommand command) {
-        Candidate candidate = command.toEntity(userInfo.userId());
+        Candidate candidate = command.toEntity(userInfo.userId);
         saveCandidatePort.save(candidate);
     }
 
@@ -56,12 +56,12 @@ public class CandidateCommandService implements CreateCandidateUseCase, AcceptCa
     @Override
     public void deleteCandidate(UserInfo userInfo, Long id) {
         Candidate candidate = loadCandidatePort.getById(id);
-        if (userInfo.role().equals(Role.ADMIN) || candidate.getRequesterId().equals(userInfo.userId())) {
+        if (userInfo.role.equals(Role.ADMIN) || candidate.getRequesterId().equals(userInfo.userId)) {
             deleteCandidatePort.deleteById(id);
             return;
         }
         throw new ForbiddenException(GlobalErrorCode.INVALID_REQUEST_EXCEPTION,
-                String.format("유저 식별자 불일치 -> %d", userInfo.userId()));
+                String.format("유저 식별자 불일치 -> %d", userInfo.userId));
     }
 
 }

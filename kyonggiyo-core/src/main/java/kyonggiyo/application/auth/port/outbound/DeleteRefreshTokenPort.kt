@@ -1,7 +1,7 @@
-package kyonggiyo.application.auth.port.outbound;
+package kyonggiyo.application.auth.port.outbound
 
-public interface DeleteRefreshTokenPort {
+interface DeleteRefreshTokenPort {
 
-    void deleteByUserId(Long userId);
+    fun deleteByUserId(userId: Long)
 
 }

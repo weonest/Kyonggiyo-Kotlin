@@ -1,9 +1,9 @@
-package kyonggiyo.application.auth.port.outbound;
+package kyonggiyo.application.auth.port.outbound
 
-import kyonggiyo.application.auth.domain.entity.RefreshToken;
+import kyonggiyo.application.auth.domain.entity.RefreshToken
 
-public interface LoadRefreshTokenPort {
+interface LoadRefreshTokenPort {
 
-    RefreshToken getByUserId(Long userId);
+    fun getByUserId(userId: Long): RefreshToken
 
 }

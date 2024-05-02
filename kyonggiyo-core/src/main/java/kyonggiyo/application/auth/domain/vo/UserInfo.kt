@@ -1,14 +1,16 @@
-package kyonggiyo.application.auth.domain.vo;
+package kyonggiyo.application.auth.domain.vo
 
-import kyonggiyo.domain.user.Role;
+import kyonggiyo.domain.user.Role
 
-public record UserInfo(
-        Long userId,
-        Role role
+data class UserInfo(
+        val userId: Long,
+        val role: Role
 ) {
 
-    public static UserInfo from(AuthInfo authInfo) {
-        return new UserInfo(authInfo.userId(), authInfo.role());
+    companion object {
+        fun from(authInfo: AuthInfo): UserInfo {
+            return UserInfo(authInfo.userId, authInfo.role)
+        }
     }
 
 }

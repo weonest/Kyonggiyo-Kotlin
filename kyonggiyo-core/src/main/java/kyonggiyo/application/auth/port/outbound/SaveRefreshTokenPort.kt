@@ -1,9 +1,9 @@
-package kyonggiyo.application.auth.port.outbound;
+package kyonggiyo.application.auth.port.outbound
 
-import kyonggiyo.application.auth.domain.entity.RefreshToken;
+import kyonggiyo.application.auth.domain.entity.RefreshToken
 
-public interface SaveRefreshTokenPort {
+interface SaveRefreshTokenPort {
 
-    void save(RefreshToken refreshToken);
+    fun save(refreshToken: RefreshToken)
 
 }

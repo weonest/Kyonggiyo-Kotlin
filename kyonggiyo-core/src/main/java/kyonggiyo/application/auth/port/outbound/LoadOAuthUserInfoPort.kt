@@ -1,9 +1,9 @@
-package kyonggiyo.application.auth.port.outbound;
+package kyonggiyo.application.auth.port.outbound
 
-import kyonggiyo.application.auth.domain.vo.Platform;
+import kyonggiyo.application.auth.domain.vo.Platform
 
-public interface LoadOAuthUserInfoPort {
+interface LoadOAuthUserInfoPort {
 
-    String requestUserInfo(Platform platform, String accessToken);
+    fun requestUserInfo(platform: Platform, accessToken: String): String
 
 }

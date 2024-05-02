@@ -1,18 +1,18 @@
-package kyonggiyo.application.auth.service;
+package kyonggiyo.application.auth.service
 
-import kyonggiyo.application.auth.domain.entity.RefreshToken;
-import kyonggiyo.application.auth.domain.vo.AccessToken;
-import kyonggiyo.application.auth.domain.vo.AuthInfo;
-import kyonggiyo.domain.user.Role;
+import kyonggiyo.application.auth.domain.entity.RefreshToken
+import kyonggiyo.application.auth.domain.vo.AccessToken
+import kyonggiyo.application.auth.domain.vo.AuthInfo
+import kyonggiyo.domain.user.Role
 
-public interface TokenManager {
+interface TokenManager {
 
-    AccessToken generateAccessToken(Long userId, Role role);
+    fun generateAccessToken(userId: Long, role: Role): AccessToken
 
-    RefreshToken generateRefreshToken(Long userId);
+    fun generateRefreshToken(userId: Long): RefreshToken
 
-    void validate(String token);
+    fun validate(token: String)
 
-    AuthInfo extract(String token);
+    fun extract(token: String): AuthInfo
 
 }

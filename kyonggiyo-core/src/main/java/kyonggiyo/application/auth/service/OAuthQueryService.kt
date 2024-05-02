@@ -1,21 +1,19 @@
-package kyonggiyo.application.auth.service;
+package kyonggiyo.application.auth.service
 
-import kyonggiyo.application.auth.domain.vo.Platform;
-import kyonggiyo.application.auth.port.outbound.LoadOAuthTokenPort;
-import kyonggiyo.application.auth.port.outbound.LoadOAuthUserInfoPort;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import kyonggiyo.application.auth.domain.vo.Platform
+import kyonggiyo.application.auth.port.outbound.LoadOAuthTokenPort
+import kyonggiyo.application.auth.port.outbound.LoadOAuthUserInfoPort
+import org.springframework.stereotype.Service
 
 @Service
-@RequiredArgsConstructor
-public class OAuthQueryService {
+class OAuthQueryService(
+        private val loadOAuthTokenPort: LoadOAuthTokenPort,
+        private val loadOAuthUserInfoPort: LoadOAuthUserInfoPort
+) {
 
-    private final LoadOAuthTokenPort loadOAuthTokenPort;
-    private final LoadOAuthUserInfoPort loadOAuthUserInfoPort;
-
-    public String getProviderId(Platform platform, String authCode) {
-        String accessToken = loadOAuthTokenPort.requestToken(platform, authCode);
-        return loadOAuthUserInfoPort.requestUserInfo(platform, accessToken);
+    fun getProviderId(platform: Platform, authCode: String): String {
+        return loadOAuthTokenPort.requestToken(platform, authCode)
+                .let { loadOAuthUserInfoPort.requestUserInfo(platform, it) }
     }
-    
+
 }

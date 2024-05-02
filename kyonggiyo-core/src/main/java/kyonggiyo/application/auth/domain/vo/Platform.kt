@@ -1,20 +1,18 @@
-package kyonggiyo.application.auth.domain.vo;
+package kyonggiyo.application.auth.domain.vo
 
-import kyonggiyo.common.exception.GlobalErrorCode;
-import kyonggiyo.common.exception.InvalidValueException;
+import kyonggiyo.common.exception.GlobalErrorCode
+import kyonggiyo.common.exception.InvalidValueException
+import java.util.*
 
-import java.util.Arrays;
-
-public enum Platform {
+enum class Platform {
     NAVER,
     KAKAO;
 
-    public static Platform from(String platform) {
-        return Arrays.stream(Platform.values())
-                .filter(v -> v.name().equals(platform.toUpperCase()))
-                .findAny()
-                .orElseThrow(() -> new InvalidValueException(GlobalErrorCode.INVALID_REQUEST_EXCEPTION));
+    companion object {
+        fun from(platform: String): Platform {
+            return values().find { it.name == platform.uppercase() }
+                    ?: throw InvalidValueException(GlobalErrorCode.INVALID_REQUEST_EXCEPTION)
+        }
     }
 
 }
-

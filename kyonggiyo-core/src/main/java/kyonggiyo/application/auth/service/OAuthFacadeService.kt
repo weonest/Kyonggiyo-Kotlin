@@ -1,46 +1,40 @@
-package kyonggiyo.application.auth.service;
+package kyonggiyo.application.auth.service
 
-import kyonggiyo.application.auth.domain.entity.Account;
-import kyonggiyo.application.auth.domain.vo.Platform;
-import kyonggiyo.application.auth.port.inbound.LogInResponse;
-import kyonggiyo.application.auth.port.inbound.OAuthLoginUseCase;
-import kyonggiyo.application.auth.port.inbound.OAuthLogoutUseCase;
-import kyonggiyo.application.auth.port.inbound.TokenResponse;
-import kyonggiyo.application.port.out.user.LoadUserPort;
-import kyonggiyo.domain.user.User;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import kyonggiyo.application.auth.domain.vo.Platform
+import kyonggiyo.application.auth.port.inbound.LogInResponse
+import kyonggiyo.application.auth.port.inbound.LogInResponse.Companion.from
+import kyonggiyo.application.auth.port.inbound.LogInResponse.Companion.of
+import kyonggiyo.application.auth.port.inbound.OAuthLoginUseCase
+import kyonggiyo.application.auth.port.inbound.OAuthLogoutUseCase
+import kyonggiyo.application.port.out.user.LoadUserPort
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-@RequiredArgsConstructor
-public class OAuthFacadeService implements OAuthLoginUseCase, OAuthLogoutUseCase {
+class OAuthFacadeService(
+        private val tokenService: TokenService,
+        private val oAuthQueryService: OAuthQueryService,
+        private val accountLoginService: AccountLoginService,
+        private val loadUserPort: LoadUserPort
+) : OAuthLoginUseCase, OAuthLogoutUseCase {
 
-    private final TokenService tokenService;
-    private final OAuthQueryService oAuthQueryService;
-    private final AccountLoginService accountLoginService;
-    private final LoadUserPort loadUserPort;
-
-    @Override
     @Transactional(readOnly = true)
-    public LogInResponse login(Platform platform, String code) {
-        String platformId = oAuthQueryService.getProviderId(platform, code);
-        Account account = accountLoginService.login(platform, platformId);
+    override fun login(platform: Platform, code: String): LogInResponse {
+        val platformId = oAuthQueryService.getProviderId(platform, code)
+        val account = accountLoginService.login(platform, platformId)
 
         if (account.hasNoUser()) {
-            return LogInResponse.Companion.from(account.getId());
+            return from(account.id!!)
         }
 
-        User user = loadUserPort.getById(account.getUserId());
-        TokenResponse tokenResponse = tokenService.generateToken(user);
+        val tokenResponse = loadUserPort.getById(account.userId!!)
+                .let { tokenService.generateToken(it) }
 
-        return LogInResponse.Companion.of(account.getUserId(), tokenResponse);
+        return of(account.userId!!, tokenResponse)
     }
 
-    @Override
     @Transactional
-    public void logout(Long userId) {
-        tokenService.deleteRefreshTokenByUserId(userId);
+    override fun logout(userId: Long) {
+        tokenService.deleteRefreshTokenByUserId(userId)
     }
-
 }

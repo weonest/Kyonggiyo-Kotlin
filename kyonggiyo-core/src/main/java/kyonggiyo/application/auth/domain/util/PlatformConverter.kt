@@ -1,13 +1,10 @@
-package kyonggiyo.application.auth.domain.util;
+package kyonggiyo.application.auth.domain.util
 
-import kyonggiyo.application.auth.domain.vo.Platform;
-import org.springframework.core.convert.converter.Converter;
+import kyonggiyo.application.auth.domain.vo.Platform
+import org.springframework.core.convert.converter.Converter
 
-public class PlatformConverter implements Converter<String, Platform> {
-
-    @Override
-    public Platform convert(String platform) {
-        return Platform.from(platform);
+class PlatformConverter : Converter<String, Platform> {
+    override fun convert(platform: String): Platform {
+        return Platform.from(platform)
     }
-
 }

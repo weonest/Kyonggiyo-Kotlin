@@ -23,8 +23,8 @@ class TokenService(
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     fun generateToken(user: User): TokenResponse {
-        val accessToken = tokenManager.generateAccessToken(user.id, user.role)
-        val refreshToken = tokenManager.generateRefreshToken(user.id)
+        val accessToken = tokenManager.generateAccessToken(user.id!!, user.role)
+        val refreshToken = tokenManager.generateRefreshToken(user.id!!)
         saveRefreshTokenPort.save(refreshToken)
 
         return TokenResponse(accessToken = accessToken.value,

@@ -1,7 +1,7 @@
-package kyonggiyo.application.auth.port.inbound;
+package kyonggiyo.application.auth.port.inbound
 
-public interface OAuthLogoutUseCase {
+interface OAuthLogoutUseCase {
 
-    void logout(Long userId);
+    fun logout(userId: Long)
 
 }

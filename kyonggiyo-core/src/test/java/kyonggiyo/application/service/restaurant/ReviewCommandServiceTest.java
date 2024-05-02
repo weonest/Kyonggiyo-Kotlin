@@ -66,7 +66,7 @@ class ReviewCommandServiceTest extends ServiceTest {
                 .reviewerNickname(reviewer.getNickname())
                 .build();
 
-        given(loadUserPort.getById(userInfo.userId())).willReturn(reviewer);
+        given(loadUserPort.getById(userInfo.userId)).willReturn(reviewer);
         given(loadRestaurantPort.getById(restaurant.getId())).willReturn(restaurant);
         given(saveReviewPort.save(review)).willReturn(review);
 
@@ -74,7 +74,7 @@ class ReviewCommandServiceTest extends ServiceTest {
         reviewCommandService.createReview(userInfo, restaurant.getId(), request);
 
         // then
-        verify(loadUserPort, only()).getById(userInfo.userId());
+        verify(loadUserPort, only()).getById(userInfo.userId);
         verify(loadRestaurantPort, only()).getById(restaurant.getId());
         verify(saveReviewPort, only()).save(review);
     }

@@ -1,8 +1,7 @@
-package kyonggiyo.application.auth.port.inbound;
+package kyonggiyo.application.auth.port.inbound
 
+interface ReissueTokenUseCase {
 
-public interface ReissueTokenUseCase {
-
-    TokenResponse reissueToken(String refreshToken);
+    fun reissueToken(refreshToken: String): TokenResponse
 
 }

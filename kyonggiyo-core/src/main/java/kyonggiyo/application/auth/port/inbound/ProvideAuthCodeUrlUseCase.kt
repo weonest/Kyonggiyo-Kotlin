@@ -1,11 +1,10 @@
-package kyonggiyo.application.auth.port.inbound;
+package kyonggiyo.application.auth.port.inbound
 
-import kyonggiyo.application.auth.domain.vo.Platform;
+import kyonggiyo.application.auth.domain.vo.Platform
+import java.net.URI
 
-import java.net.URI;
+interface ProvideAuthCodeUrlUseCase {
 
-public interface ProvideAuthCodeUrlUseCase {
-
-    URI provideUri(Platform platform);
+    fun provideUri(platform: Platform): URI
 
 }
