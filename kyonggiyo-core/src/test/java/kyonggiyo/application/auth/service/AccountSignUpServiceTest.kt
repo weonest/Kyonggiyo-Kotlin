@@ -1,4 +1,4 @@
-package kyonggiyo.application.service.auth
+package kyonggiyo.application.auth.service
 
 import io.kotest.core.annotation.DisplayName
 import io.kotest.core.spec.style.DescribeSpec

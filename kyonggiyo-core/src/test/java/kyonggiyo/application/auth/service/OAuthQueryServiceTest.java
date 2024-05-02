@@ -1,4 +1,4 @@
-package kyonggiyo.application.service.auth;
+package kyonggiyo.application.auth.service;
 
 import kyonggiyo.application.auth.domain.vo.Platform;
 import kyonggiyo.application.auth.port.outbound.LoadOAuthTokenPort;

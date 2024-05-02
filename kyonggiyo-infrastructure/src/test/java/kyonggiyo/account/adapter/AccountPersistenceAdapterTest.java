@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.account;
+package kyonggiyo.account.adapter;
 
 import kyonggiyo.account.adapter.AccountPersistenceAdapter;
 import kyonggiyo.account.repository.AccountRepository;
