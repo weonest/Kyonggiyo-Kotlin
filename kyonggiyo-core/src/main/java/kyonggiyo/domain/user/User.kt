@@ -6,7 +6,6 @@ import kyonggiyo.domain.BaseEntity
 @Entity
 @Table(name = "users")
 class User(
-    role: Role,
     nickname: String
 ) : BaseEntity() {
 
@@ -16,7 +15,7 @@ class User(
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    var role: Role = role
+    var role: Role = Role.USER
         protected set
 
     @Column(unique = true, nullable = false)
@@ -26,5 +25,11 @@ class User(
     @Column(nullable = false)
     var isDeleted: Boolean = false
         protected set
+
+    fun delete() {
+        if(!isDeleted) {
+            isDeleted = true
+        }
+    }
 
 }

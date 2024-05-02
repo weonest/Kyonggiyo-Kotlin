@@ -10,9 +10,9 @@ plugins {
 
     id("java")
     id("io.spring.dependency-management") version "1.1.4"
-    id("org.springframework.boot") version "3.1.7" apply(false)
-    id("com.epages.restdocs-api-spec") version "0.18.2" apply(false)
-    id("org.hidetake.swagger.generator") version "2.18.2" apply(false)
+    id("org.springframework.boot") version "3.1.7"
+    id("com.epages.restdocs-api-spec") version "0.18.2"
+    id("org.hidetake.swagger.generator") version "2.18.2"
 }
 
 java {
@@ -72,10 +72,21 @@ subprojects {
         // Spring
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
+        // lombok
+        compileOnly("org.projectlombok:lombok")
+        annotationProcessor("org.projectlombok:lombok")
+
         // Test
+        val mockkVersion = "1.13.7"
+        val kotestVersion = "5.8.0"
+
+        testImplementation("io.mockk:mockk:$mockkVersion")
+        testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+        testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
         testImplementation("org.springframework.boot:spring-boot-starter-test" ) {
             exclude("com.vaadin.external.google")
         }
+
     }
 
     tasks.withType<KotlinCompile> {
