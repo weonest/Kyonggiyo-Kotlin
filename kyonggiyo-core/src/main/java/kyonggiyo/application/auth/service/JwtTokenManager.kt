@@ -12,7 +12,7 @@ import kyonggiyo.application.auth.domain.exception.TokenErrorCode
 import kyonggiyo.application.auth.domain.vo.AccessToken
 import kyonggiyo.application.auth.domain.vo.AuthInfo
 import kyonggiyo.common.property.JwtProperties
-import kyonggiyo.domain.user.Role
+import kyonggiyo.application.user.domain.vo.Role
 import org.json.JSONObject
 import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets

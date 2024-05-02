@@ -7,8 +7,8 @@ import kyonggiyo.application.auth.port.outbound.LoadRefreshTokenPort
 import kyonggiyo.application.auth.port.outbound.SaveRefreshTokenPort
 import kyonggiyo.common.exception.AuthenticationException
 import kyonggiyo.common.exception.GlobalErrorCode
-import kyonggiyo.domain.user.Role
-import kyonggiyo.domain.user.User
+import kyonggiyo.application.user.domain.vo.Role
+import kyonggiyo.application.user.domain.entity.User
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional

@@ -1,6 +1,6 @@
 package kyonggiyo.application.auth.domain.vo
 
-import kyonggiyo.domain.user.Role
+import kyonggiyo.application.user.domain.vo.Role
 
 data class AuthInfo(
         val userId: Long,

@@ -3,7 +3,7 @@ package kyonggiyo.application.auth.service
 import kyonggiyo.application.auth.domain.entity.RefreshToken
 import kyonggiyo.application.auth.domain.vo.AccessToken
 import kyonggiyo.application.auth.domain.vo.AuthInfo
-import kyonggiyo.domain.user.Role
+import kyonggiyo.application.user.domain.vo.Role
 
 interface TokenManager {
 

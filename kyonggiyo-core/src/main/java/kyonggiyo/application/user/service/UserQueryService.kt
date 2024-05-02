@@ -1,7 +1,7 @@
-package kyonggiyo.application.service.user
+package kyonggiyo.application.user.service
 
-import kyonggiyo.application.port.`in`.user.ValidateNicknameUseCase
-import kyonggiyo.application.port.out.user.ExistUserPort
+import kyonggiyo.application.user.port.inbound.ValidateNicknameUseCase
+import kyonggiyo.application.user.port.outbound.ExistUserPort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

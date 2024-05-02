@@ -1,25 +1,23 @@
-package kyonggiyo.application.service.user
+package kyonggiyo.application.user.service
 
 import kyonggiyo.application.auth.domain.vo.Platform
 import kyonggiyo.application.auth.port.outbound.LoadAccountPort
-import kyonggiyo.application.port.`in`.user.CreateUserUseCase
-import kyonggiyo.application.port.`in`.user.WithdrawUserUseCase
-import kyonggiyo.application.port.`in`.user.dto.UserCreateCommand
-import kyonggiyo.application.port.`in`.user.dto.UserDeleteCommand
-import kyonggiyo.application.port.out.user.LoadUserPort
-import kyonggiyo.application.port.out.user.SaveUserPort
+import kyonggiyo.application.user.port.inbound.CreateUserUseCase
+import kyonggiyo.application.user.port.inbound.WithdrawUserUseCase
+import kyonggiyo.application.user.port.outbound.LoadUserPort
+import kyonggiyo.application.user.port.outbound.SaveUserPort
 import kyonggiyo.common.exception.GlobalErrorCode
 import kyonggiyo.common.exception.NotFoundException
-import kyonggiyo.domain.user.User
+import kyonggiyo.application.user.domain.entity.User
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional
 class UserCommandService(
-        private val loadAccountPort: LoadAccountPort,
-        private val saveUserPort: SaveUserPort,
-        private val loadUserPort: LoadUserPort,
+    private val loadAccountPort: LoadAccountPort,
+    private val saveUserPort: SaveUserPort,
+    private val loadUserPort: LoadUserPort,
 ) : CreateUserUseCase, WithdrawUserUseCase {
 
     override fun createUser(command: UserCreateCommand): Platform {

@@ -14,7 +14,7 @@ import kyonggiyo.application.port.out.restaurant.SaveRestaurantPort;
 import kyonggiyo.common.exception.ForbiddenException;
 import kyonggiyo.common.exception.GlobalErrorCode;
 import kyonggiyo.domain.candidate.Candidate;
-import kyonggiyo.domain.user.Role;
+import kyonggiyo.application.user.domain.vo.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

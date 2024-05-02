@@ -2,7 +2,7 @@ package kyonggiyo.persistence.user
 
 import kyonggiyo.common.exception.GlobalErrorCode
 import kyonggiyo.common.exception.NotFoundException
-import kyonggiyo.domain.user.User
+import kyonggiyo.application.user.domain.entity.User
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 

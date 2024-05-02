@@ -1,6 +1,6 @@
 package kyonggiyo.persistence.user
 
-import kyonggiyo.domain.user.User
+import kyonggiyo.application.user.domain.entity.User
 
 interface UserRepository {
     fun getById(id: Long): User

@@ -8,7 +8,7 @@ import kyonggiyo.application.auth.service.TokenService;
 import kyonggiyo.auth.AuthContext;
 import kyonggiyo.application.auth.domain.exception.ExpiredTokenException;
 import kyonggiyo.application.auth.domain.exception.TokenErrorCode;
-import kyonggiyo.domain.user.Role;
+import kyonggiyo.application.user.domain.vo.Role;
 import kyonggiyo.common.exception.AuthenticationException;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.DisplayNameGeneration;

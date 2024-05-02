@@ -6,7 +6,7 @@ import kyonggiyo.application.auth.port.inbound.LogInResponse.Companion.from
 import kyonggiyo.application.auth.port.inbound.LogInResponse.Companion.of
 import kyonggiyo.application.auth.port.inbound.OAuthLoginUseCase
 import kyonggiyo.application.auth.port.inbound.OAuthLogoutUseCase
-import kyonggiyo.application.port.out.user.LoadUserPort
+import kyonggiyo.application.user.port.outbound.LoadUserPort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 

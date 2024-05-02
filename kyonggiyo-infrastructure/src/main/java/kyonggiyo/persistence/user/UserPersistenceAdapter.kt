@@ -1,9 +1,9 @@
 package kyonggiyo.persistence.user
 
-import kyonggiyo.application.port.out.user.ExistUserPort
-import kyonggiyo.application.port.out.user.LoadUserPort
-import kyonggiyo.application.port.out.user.SaveUserPort
-import kyonggiyo.domain.user.User
+import kyonggiyo.application.user.port.outbound.ExistUserPort
+import kyonggiyo.application.user.port.outbound.LoadUserPort
+import kyonggiyo.application.user.port.outbound.SaveUserPort
+import kyonggiyo.application.user.domain.entity.User
 import org.springframework.stereotype.Component
 
 @Component

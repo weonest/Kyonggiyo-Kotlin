@@ -1,6 +1,7 @@
-package kyonggiyo.domain.user
+package kyonggiyo.application.user.domain.entity
 
 import jakarta.persistence.*
+import kyonggiyo.application.user.domain.vo.Role
 import kyonggiyo.domain.BaseEntity
 
 @Entity

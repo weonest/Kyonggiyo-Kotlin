@@ -10,7 +10,7 @@ import kyonggiyo.application.auth.service.TokenService;
 import kyonggiyo.application.port.in.auth.dto.LogInResponse;
 import kyonggiyo.application.port.in.auth.dto.TokenResponse;
 import kyonggiyo.application.service.ServiceTest;
-import kyonggiyo.domain.user.User;
+import kyonggiyo.application.user.domain.entity.User;
 import kyonggiyo.fixture.UserFixtures;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;

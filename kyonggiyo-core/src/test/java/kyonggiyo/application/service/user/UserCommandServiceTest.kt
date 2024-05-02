@@ -7,10 +7,9 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kyonggiyo.application.auth.port.outbound.LoadAccountPort
-import kyonggiyo.application.port.`in`.user.dto.UserCreateCommand
-import kyonggiyo.application.port.`in`.user.dto.UserDeleteCommand
-import kyonggiyo.application.port.out.user.LoadUserPort
-import kyonggiyo.application.port.out.user.SaveUserPort
+import kyonggiyo.application.user.port.outbound.LoadUserPort
+import kyonggiyo.application.user.port.outbound.SaveUserPort
+import kyonggiyo.application.user.service.UserCommandService
 import kyonggiyo.fixture.AccountFixtures
 import kyonggiyo.fixture.UserFixtures
 

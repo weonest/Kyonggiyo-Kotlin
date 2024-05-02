@@ -1,8 +1,12 @@
-package kyonggiyo.application.port.`in`.user
+package kyonggiyo.application.user.port.inbound
 
 import kyonggiyo.application.auth.domain.vo.Platform
-import kyonggiyo.application.port.`in`.user.dto.UserCreateCommand
 
 interface CreateUserUseCase {
     fun createUser(command: UserCreateCommand): Platform
 }
+
+data class UserCreateCommand(
+    val accountId: Long,
+    val nickname: String
+)
