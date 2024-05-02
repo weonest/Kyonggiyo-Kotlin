@@ -1,7 +1,5 @@
-package kyonggiyo.application.image.domain.vo;
+package kyonggiyo.application.image.domain.vo
 
-public enum ImageType {
-
-    REVIEW,
-
+enum class ImageType {
+    REVIEW
 }

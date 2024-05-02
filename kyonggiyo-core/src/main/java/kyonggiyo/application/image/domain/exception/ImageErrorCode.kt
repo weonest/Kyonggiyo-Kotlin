@@ -1,30 +1,22 @@
-package kyonggiyo.application.image.domain.exception;
+package kyonggiyo.application.image.domain.exception
 
-import kyonggiyo.common.exception.ErrorCode;
+import kyonggiyo.common.exception.ErrorCode
 
-public enum ImageErrorCode implements ErrorCode {
+enum class ImageErrorCode(
+        val code: String,
+        val message: String
+) : ErrorCode {
 
     INVALID_FILE_EXTENSION("I001", "잘못된 파일 확장자입니다."),
     UPLOAD_EXCEPTION("I002", "이미지 업로드에 실패하였습니다."),
-    DELETE_EXCEPTION("I003", "이미지 삭제에 실패하였습니다.")
-    ;
+    DELETE_EXCEPTION("I003", "이미지 삭제에 실패하였습니다.");
 
-    private final String code;
-    private final String message;
-
-    ImageErrorCode(String code, String message) {
-        this.code = code;
-        this.message = message;
+    override fun code(): String {
+        return code
     }
 
-    @Override
-    public String code() {
-        return code;
-    }
-
-    @Override
-    public String message() {
-        return message;
+    override fun message(): String {
+        return message
     }
 
 }

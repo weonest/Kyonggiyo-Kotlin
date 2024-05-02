@@ -1,47 +1,45 @@
-package kyonggiyo.application.image.domain.entity;
+package kyonggiyo.application.image.domain.entity
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import kyonggiyo.application.image.domain.vo.ImageType;
-import kyonggiyo.domain.BaseEntity;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.Table
+import kyonggiyo.application.image.domain.vo.ImageType
+import kyonggiyo.domain.BaseEntity
 
-@Getter
 @Entity
 @Table(name = "images")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Image extends BaseEntity {
-
-    private static final String URL_PATH = "https://kyonggiyo-bucket.s3.ap-northeast-2.amazonaws.com/";
+class Image(
+        key: String,
+        imageType: ImageType,
+        referenceId: Long
+) : BaseEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    val id: Long? = null
 
-    @Column(name = "upload_key")
-    private String key;
+    @Column(name = "upload_key", nullable = false)
+    var key: String = key
+        protected set
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private ImageType imageType;
+    var imageType: ImageType = imageType
+        protected set
 
-    private Long referenceId;
+    @Column(nullable = false)
+    var referenceId: Long = referenceId
+        protected set
 
-    public Image(String key, ImageType imageType, Long referenceId) {
-        this.key = key;
-        this.imageType = imageType;
-        this.referenceId = referenceId;
-    }
+    fun getImageUrl() = URL_PATH + key
 
-    public String getImageUrl() {
-        return URL_PATH + key;
+    companion object {
+        private const val URL_PATH = "https://kyonggiyo-bucket.s3.ap-northeast-2.amazonaws.com/"
     }
 
 }
