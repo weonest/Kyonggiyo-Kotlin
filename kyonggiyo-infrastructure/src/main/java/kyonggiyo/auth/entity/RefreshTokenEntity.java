@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.token.entity;
+package kyonggiyo.auth.entity;
 
 import kyonggiyo.application.auth.domain.entity.RefreshToken;
 import lombok.Builder;

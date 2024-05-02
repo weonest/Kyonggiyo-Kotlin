@@ -2,9 +2,9 @@ package kyonggiyo.persistence;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import kyonggiyo.account.repository.AccountJpaRepository;
-import kyonggiyo.account.adapter.AccountPersistenceAdapter;
-import kyonggiyo.account.repository.JpaAccountRepositoryImpl;
+import kyonggiyo.auth.repository.AccountJpaRepository;
+import kyonggiyo.auth.adapter.AccountPersistenceAdapter;
+import kyonggiyo.auth.repository.JpaAccountRepositoryImpl;
 import kyonggiyo.persistence.candidate.CandidateJpaRepository;
 import kyonggiyo.persistence.candidate.CandidatePersistenceAdapter;
 import kyonggiyo.persistence.candidate.JpaCandidateRepositoryImpl;

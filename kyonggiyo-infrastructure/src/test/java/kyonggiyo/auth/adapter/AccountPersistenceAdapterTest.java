@@ -1,7 +1,6 @@
-package kyonggiyo.account.adapter;
+package kyonggiyo.auth.adapter;
 
-import kyonggiyo.account.adapter.AccountPersistenceAdapter;
-import kyonggiyo.account.repository.AccountRepository;
+import kyonggiyo.auth.repository.AccountRepository;
 import kyonggiyo.fixture.AccountFixtures;
 import kyonggiyo.persistence.AdapterTest;
 import kyonggiyo.application.auth.domain.entity.Account;

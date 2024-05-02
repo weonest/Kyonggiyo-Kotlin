@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.token;
+package kyonggiyo.auth.repository;
 
 import kyonggiyo.application.auth.domain.entity.RefreshToken;
 

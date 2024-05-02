@@ -1,6 +1,6 @@
-package kyonggiyo.account.adapter
+package kyonggiyo.auth.adapter
 
-import kyonggiyo.account.repository.AccountRepository
+import kyonggiyo.auth.repository.AccountRepository
 import kyonggiyo.application.auth.domain.entity.Account
 import kyonggiyo.application.auth.domain.vo.Platform
 import kyonggiyo.application.auth.port.outbound.LoadAccountPort

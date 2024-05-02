@@ -1,9 +1,9 @@
-package kyonggiyo.persistence.token;
+package kyonggiyo.auth.repository;
 
 import kyonggiyo.application.auth.domain.entity.RefreshToken;
 import kyonggiyo.application.auth.domain.exception.ExpiredTokenException;
 import kyonggiyo.common.exception.GlobalErrorCode;
-import kyonggiyo.persistence.token.entity.RefreshTokenEntity;
+import kyonggiyo.auth.entity.RefreshTokenEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
