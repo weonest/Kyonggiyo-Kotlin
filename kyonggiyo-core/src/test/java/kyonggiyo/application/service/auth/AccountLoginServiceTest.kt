@@ -1,59 +1,64 @@
-package kyonggiyo.application.service.auth;
+package kyonggiyo.application.service.auth
 
-import kyonggiyo.application.port.out.auth.LoadAccountPort;
-import kyonggiyo.application.service.ServiceTest;
-import kyonggiyo.domain.auth.Account;
-import kyonggiyo.fixture.AccountFixtures;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
+import io.kotest.core.annotation.DisplayName
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
+import kyonggiyo.application.port.out.auth.LoadAccountPort
+import kyonggiyo.fixture.AccountFixtures
+import org.springframework.test.context.ContextConfiguration
 
-import java.util.Optional;
+@DisplayName("AccountLoginServiceTest")
+@ContextConfiguration(classes = [AccountLoginService::class])
+class AccountLoginServiceTest : DescribeSpec({
+    val loadAccountPort = mockk<LoadAccountPort>()
+    val accountSingUpService = mockk<AccountSignUpService>()
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
+    val sut = AccountLoginService(loadAccountPort, accountSingUpService)
 
-@ContextConfiguration(classes = AccountLoginService.class)
-class AccountLoginServiceTest extends ServiceTest {
+    describe("계정 로그인") {
+        context("계정이 존재하는 경우") {
+            it("계정을 반환한다") {
+                // arrange
+                val account = AccountFixtures.generateEntity()
 
-    @Autowired
-    private AccountLoginService accountLoginService;
+                every {
+                    loadAccountPort.findByPlatformAndPlatformId(
+                            account.platform,
+                            account.platformId)
+                } returns account
 
-    @MockBean
-    private LoadAccountPort loadAccountPort;
+                // act
+                val result = sut.login(account.platform, account.platformId)
 
-    @MockBean
-    private AccountSignUpService accountSignUpService;
+                // assert
+                result shouldBe account
+                verify(exactly = 0) { accountSingUpService.signup(any(), any()) }
+            }
+        }
 
-    @Test
-    void 계정이_존재하면_계정을_반환한다() {
-        // given
-        Account account = AccountFixtures.generateAccountEntityWithoutUser();
+        context("계정이 존재하지 않는 경우") {
+            it("생성한 계정을 반환한다") {
+                // arrange
+                val account = AccountFixtures.generateEntity()
 
-        given(loadAccountPort.findByPlatformAndPlatformId(account.getPlatform(), account.getPlatformId()))
-                .willReturn(Optional.of(account));
+                every {
+                    loadAccountPort.findByPlatformAndPlatformId(
+                            account.platform,
+                            account.platformId)
+                } returns null
+                every { accountSingUpService.signup(account.platform, account.platformId) } returns account
 
-        // when
-        Account result = accountLoginService.login(account.getPlatform(), account.getPlatformId());
+                // act
+                val result = sut.login(account.platform, account.platformId)
 
-        assertThat(account).isEqualTo(result);
+                // assert
+                result shouldBe account
+                verify(exactly = 1) { accountSingUpService.signup(any(), any()) }
+            }
+        }
     }
 
-    @Test
-    void 계정이_존재하지_않으면_계정을_새로_만든다() {
-        // given
-        Account account = AccountFixtures.generateAccountEntityWithoutUser();
-
-        given(loadAccountPort.findByPlatformAndPlatformId(account.getPlatform(), account.getPlatformId()))
-                .willReturn(Optional.empty());
-        given(accountSignUpService.signup(account.getPlatform(), account.getPlatformId()))
-                .willReturn(account);
-
-        // when
-        Account result = accountLoginService.login(account.getPlatform(), account.getPlatformId());
-
-        assertThat(account).isEqualTo(result);
-    }
-
-}
+})

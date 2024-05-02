@@ -1,39 +1,36 @@
-package kyonggiyo.application.service.auth;
+package kyonggiyo.application.service.auth
 
-import kyonggiyo.application.port.out.auth.SaveAccountPort;
-import kyonggiyo.application.service.ServiceTest;
-import kyonggiyo.domain.auth.Account;
-import kyonggiyo.fixture.AccountFixtures;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
+import io.kotest.core.annotation.DisplayName
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
+import kyonggiyo.application.port.out.auth.SaveAccountPort
+import kyonggiyo.fixture.AccountFixtures
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
+@DisplayName("AccountSingUpServiceTest")
+class AccountSignUpServiceTest : DescribeSpec({
+    val saveAccountPort = mockk<SaveAccountPort>()
 
-@ContextConfiguration(classes = AccountSignUpService.class)
-class AccountSignUpServiceTest extends ServiceTest {
+    val sut = AccountSignUpService(saveAccountPort)
 
-    @Autowired
-    private AccountSignUpService accountSignUpService;
+    describe("계정 생성") {
+        context("계정을 생성하고") {
+            it("계정을 반환한다") {
+                // arrange
+                val account = AccountFixtures.generateEntity()
 
-    @MockBean
-    private SaveAccountPort saveAccountPort;
+                every { saveAccountPort.save(any()) } returns account
 
-    @Test
-    void 플랫폼과_플랫폼_식별자로_새로운_계정을_생성한다() {
-        // given
-        Account account = AccountFixtures.generateAccountEntityWithoutUser();
+                // act
+                val result = sut.signup(account.platform, account.platformId)
 
-        given(saveAccountPort.save(any(Account.class))).willReturn(account);
-
-        // when
-        Account result = accountSignUpService.signup(account.getPlatform(), account.getPlatformId());
-
-        // then
-        assertThat(account).isEqualTo(result);
+                // assert
+                result shouldBe account
+                verify(exactly = 1) { saveAccountPort.save(any()) }
+            }
+        }
     }
 
-}
+})

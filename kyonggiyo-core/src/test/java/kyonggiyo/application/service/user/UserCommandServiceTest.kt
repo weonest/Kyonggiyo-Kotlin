@@ -38,8 +38,8 @@ class UserCommandServiceTest : DescribeSpec({
                 val result = sut.createUser(command)
 
                 // assert
-                verify(exactly = 1) { saveUserPort.save(any()) }
                 result shouldBe account.platform
+                verify(exactly = 1) { saveUserPort.save(any()) }
             }
         }
     }
