@@ -15,7 +15,7 @@ class AccountLoginService(
     @Transactional(readOnly = true)
     fun login(platform: Platform, platformId: String): Account {
         return loadAccountPort.findByPlatformAndPlatformId(platform, platformId)
-                .let { accountSignUpService.signup(platform, platformId) }
+                ?: accountSignUpService.signup(platform, platformId)
     }
 
 }
