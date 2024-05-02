@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.candidate;
+package kyonggiyo.candidate.adapter;
 
 import kyonggiyo.candidate.adapter.CandidatePersistenceAdapter;
 import kyonggiyo.candidate.repository.CandidateJpaRepository;

@@ -1,8 +1,9 @@
-package kyonggiyo.domain.restaurant
+package kyonggiyo.application.restaurant.domain
 
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
+import kyonggiyo.domain.restaurant.Address
 
 class AddressTest : DescribeSpec({
 

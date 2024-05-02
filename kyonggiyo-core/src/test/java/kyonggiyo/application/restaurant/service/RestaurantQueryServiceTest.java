@@ -1,4 +1,4 @@
-package kyonggiyo.application.service.restaurant;
+package kyonggiyo.application.restaurant.service;
 
 import kyonggiyo.application.port.in.restaurant.LoadRestaurantUseCase;
 import kyonggiyo.application.port.in.restaurant.dto.RestaurantByKeywordQuery;
@@ -9,6 +9,7 @@ import kyonggiyo.application.port.in.restaurant.dto.RestaurantSearchResponse;
 import kyonggiyo.application.port.out.image.LoadImagePort;
 import kyonggiyo.application.port.out.restaurant.LoadRestaurantPort;
 import kyonggiyo.application.service.ServiceTest;
+import kyonggiyo.application.service.restaurant.RestaurantQueryService;
 import kyonggiyo.domain.image.Image;
 import kyonggiyo.domain.image.ImageType;
 import kyonggiyo.domain.restaurant.Restaurant;

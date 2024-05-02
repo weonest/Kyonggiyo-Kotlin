@@ -1,4 +1,4 @@
-package kyonggiyo.application.service.restaurant;
+package kyonggiyo.application.restaurant.service;
 
 import jakarta.persistence.EntityManager;
 import kyonggiyo.application.auth.domain.vo.UserInfo;

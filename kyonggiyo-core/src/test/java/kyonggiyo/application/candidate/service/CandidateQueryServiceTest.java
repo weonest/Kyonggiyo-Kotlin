@@ -1,4 +1,4 @@
-package kyonggiyo.application.service.candidate;
+package kyonggiyo.application.candidate.service;
 
 import kyonggiyo.application.auth.domain.vo.UserInfo;
 import kyonggiyo.application.candidate.domain.entity.Candidate;
