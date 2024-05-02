@@ -1,21 +1,21 @@
-package kyonggiyo.fixture;
+package kyonggiyo.fixture
 
-import kyonggiyo.domain.user.Role;
-import kyonggiyo.domain.user.User;
-import org.instancio.Instancio;
+import com.navercorp.fixturemonkey.kotlin.giveMeBuilder
+import com.navercorp.fixturemonkey.kotlin.setExp
+import kyonggiyo.IdGenerator
+import kyonggiyo.ReflectionMonkey
+import kyonggiyo.domain.user.User
+import net.jqwik.api.Arbitraries
 
-import static org.instancio.Select.field;
 
-public class UserFixtures {
+object UserFixtures {
 
-    private UserFixtures() {
-    }
-
-    public static User generateUserEntity() {
-        return Instancio.of(User.class)
-                .set(field(User::isDeleted), false)
-                .set(field(User::getRole), Role.USER)
-                .create();
+    fun generateUserEntity(): User {
+        return ReflectionMonkey.giveMeBuilder<User>()
+                .setExp(User::id, IdGenerator.getId())
+                .setExp(User::nickname, Arbitraries.strings().withCharRange('0', 'z'))
+                .setExp(User::isDeleted, false)
+                .sample()
     }
 
 }

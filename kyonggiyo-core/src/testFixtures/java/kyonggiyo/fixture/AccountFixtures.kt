@@ -1,25 +1,32 @@
-package kyonggiyo.fixture;
+package kyonggiyo.fixture
 
-import kyonggiyo.domain.auth.Account;
-import org.instancio.Instancio;
-import org.instancio.Select;
+import com.navercorp.fixturemonkey.kotlin.giveMeBuilder
+import com.navercorp.fixturemonkey.kotlin.setExp
+import com.navercorp.fixturemonkey.kotlin.setNullExp
+import kyonggiyo.IdGenerator
+import kyonggiyo.ReflectionMonkey
+import kyonggiyo.domain.auth.Account
+import kyonggiyo.domain.auth.Platform
+import net.jqwik.api.Arbitraries
 
-public class AccountFixtures {
+object AccountFixtures {
 
-    private AccountFixtures() {
+    fun generateEntity(): Account {
+        return ReflectionMonkey.giveMeBuilder<Account>()
+                .setExp(Account::id, IdGenerator.getId())
+                .setExp(Account::platform, Arbitraries.of(Platform.KAKAO, Platform.NAVER))
+                .setExp(Account::platformId, Arbitraries.strings().withCharRange('a', 'z').ofMaxLength(10))
+                .setExp(Account::userId, IdGenerator.getId())
+                .sample()
     }
 
-
-    public static Account generateAccountEntity() {
-        return Instancio.of(Account.class)
-                .set(Select.field(Account::getUser), UserFixtures.generateUserEntity())
-                .create();
-    }
-
-    public static Account generateAccountEntityWithoutUser() {
-        return Instancio.of(Account.class)
-                .ignore(Select.field(Account::getUser))
-                .create();
+    fun generateWithoutUserEntity(): Account {
+        return ReflectionMonkey.giveMeBuilder<Account>()
+                .setExp(Account::id, IdGenerator.getId())
+                .setExp(Account::platform, Arbitraries.of(Platform.KAKAO, Platform.NAVER))
+                .setExp(Account::platformId, Arbitraries.strings().withCharRange('a', 'z').ofMaxLength(10))
+                .setNullExp(Account::userId)
+                .sample()
     }
 
 }
