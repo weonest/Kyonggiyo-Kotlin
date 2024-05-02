@@ -1,4 +1,4 @@
-package kyonggiyo.application.service.user
+package kyonggiyo.application.user.service
 
 import io.kotest.core.annotation.DisplayName
 import io.kotest.core.spec.style.DescribeSpec
