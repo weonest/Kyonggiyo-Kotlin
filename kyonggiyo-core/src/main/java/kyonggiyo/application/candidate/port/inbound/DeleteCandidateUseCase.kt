@@ -1,10 +1,9 @@
-package kyonggiyo.application.port.in.candidate;
+package kyonggiyo.application.candidate.port.inbound
 
+import kyonggiyo.application.auth.domain.vo.UserInfo
 
-import kyonggiyo.application.auth.domain.vo.UserInfo;
+interface DeleteCandidateUseCase {
 
-public interface DeleteCandidateUseCase {
-
-    void deleteCandidate(UserInfo userInfo, Long id) ;
+    fun deleteCandidate(userInfo: UserInfo, id: Long)
 
 }

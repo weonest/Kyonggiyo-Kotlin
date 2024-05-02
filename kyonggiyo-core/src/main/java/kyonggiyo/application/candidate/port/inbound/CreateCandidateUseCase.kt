@@ -1,10 +1,36 @@
-package kyonggiyo.application.port.in.candidate;
+package kyonggiyo.application.candidate.port.inbound
 
-import kyonggiyo.application.auth.domain.vo.UserInfo;
-import kyonggiyo.application.port.in.candidate.dto.CandidateCreateCommand;
+import kyonggiyo.application.auth.domain.vo.UserInfo
+import kyonggiyo.application.candidate.domain.entity.Candidate
+import kyonggiyo.domain.restaurant.RestaurantCategory
 
-public interface CreateCandidateUseCase {
+interface CreateCandidateUseCase {
 
-    void createCandidate(UserInfo userInfo, CandidateCreateCommand command);
+    fun createCandidate(userInfo: UserInfo, command: CandidateCreateCommand)
+
+}
+
+data class CandidateCreateCommand(
+    val name: String,
+    val category: RestaurantCategory,
+    val contact: String,
+    val address: String,
+    val lat: Double,
+    val lng: Double,
+    val reason: String
+) {
+
+    fun toEntity(requestId: Long): Candidate {
+        return Candidate(
+            name = name,
+            category = category,
+            contact = contact,
+            address = address,
+            lat = lat,
+            lng = lng,
+            reason = reason,
+            requesterId = requestId
+        )
+    }
 
 }

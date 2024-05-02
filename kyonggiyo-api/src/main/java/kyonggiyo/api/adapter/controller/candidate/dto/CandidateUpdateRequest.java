@@ -1,6 +1,6 @@
 package kyonggiyo.api.adapter.controller.candidate.dto;
 
-import kyonggiyo.application.port.in.candidate.dto.CandidateUpdateCommand;
+import kyonggiyo.application.candidate.port.inbound.CandidateUpdateCommand;
 import kyonggiyo.domain.restaurant.RestaurantCategory;
 
 public record CandidateUpdateRequest(

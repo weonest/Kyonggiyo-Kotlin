@@ -1,14 +1,15 @@
 package kyonggiyo.application.service.candidate;
 
 import kyonggiyo.application.auth.domain.vo.UserInfo;
-import kyonggiyo.application.port.in.candidate.LoadCandidateUseCase;
-import kyonggiyo.application.port.in.candidate.dto.CandidateResponse;
-import kyonggiyo.application.port.out.candidate.LoadCandidatePort;
+import kyonggiyo.application.candidate.domain.entity.Candidate;
+import kyonggiyo.application.candidate.domain.vo.Status;
+import kyonggiyo.application.candidate.port.inbound.CandidateResponse;
+import kyonggiyo.application.candidate.port.inbound.LoadCandidateUseCase;
+import kyonggiyo.application.candidate.port.outbound.LoadCandidatePort;
+import kyonggiyo.application.candidate.service.CandidateQueryService;
 import kyonggiyo.application.service.ServiceTest;
-import kyonggiyo.common.response.SliceResponse;
-import kyonggiyo.domain.candidate.Candidate;
-import kyonggiyo.domain.candidate.Status;
 import kyonggiyo.application.user.domain.vo.Role;
+import kyonggiyo.common.response.SliceResponse;
 import kyonggiyo.fixture.CandidateFixtures;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;

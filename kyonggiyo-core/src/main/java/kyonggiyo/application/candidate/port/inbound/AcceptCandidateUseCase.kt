@@ -1,7 +1,7 @@
-package kyonggiyo.application.port.in.candidate;
+package kyonggiyo.application.candidate.port.inbound
 
-public interface AcceptCandidateUseCase {
+interface AcceptCandidateUseCase {
 
-    void acceptCandidate(Long id);
+    fun acceptCandidate(id: Long)
 
 }
