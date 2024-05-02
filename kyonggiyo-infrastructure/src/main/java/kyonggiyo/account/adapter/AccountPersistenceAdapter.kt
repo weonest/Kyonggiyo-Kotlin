@@ -1,5 +1,6 @@
-package kyonggiyo.persistence.account
+package kyonggiyo.account.adapter
 
+import kyonggiyo.account.repository.AccountRepository
 import kyonggiyo.application.auth.domain.entity.Account
 import kyonggiyo.application.auth.domain.vo.Platform
 import kyonggiyo.application.auth.port.outbound.LoadAccountPort

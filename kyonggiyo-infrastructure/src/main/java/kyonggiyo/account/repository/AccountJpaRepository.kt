@@ -1,14 +1,11 @@
-package kyonggiyo.persistence.account
+package kyonggiyo.account.repository
 
 import kyonggiyo.application.auth.domain.entity.Account
 import kyonggiyo.application.auth.domain.vo.Platform
+import org.springframework.data.jpa.repository.JpaRepository
 
-interface AccountRepository {
-
-    fun findById(accountId: Long): Account?
+interface AccountJpaRepository : JpaRepository<Account, Long> {
 
     fun findByPlatformAndPlatformId(platform: Platform, platformId: String): Account?
-
-    fun save(account: Account): Account
 
 }

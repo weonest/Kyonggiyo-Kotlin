@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.account
+package kyonggiyo.account.repository
 
 import kyonggiyo.application.auth.domain.entity.Account
 import kyonggiyo.application.auth.domain.vo.Platform
