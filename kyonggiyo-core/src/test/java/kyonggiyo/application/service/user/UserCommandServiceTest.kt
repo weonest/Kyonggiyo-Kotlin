@@ -6,9 +6,9 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import kyonggiyo.application.auth.port.outbound.LoadAccountPort
 import kyonggiyo.application.port.`in`.user.dto.UserCreateCommand
 import kyonggiyo.application.port.`in`.user.dto.UserDeleteCommand
-import kyonggiyo.application.port.out.auth.LoadAccountPort
 import kyonggiyo.application.port.out.user.LoadUserPort
 import kyonggiyo.application.port.out.user.SaveUserPort
 import kyonggiyo.fixture.AccountFixtures

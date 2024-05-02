@@ -1,7 +1,7 @@
 package kyonggiyo.application.service.restaurant;
 
 import jakarta.persistence.EntityManager;
-import kyonggiyo.application.port.in.auth.dto.UserInfo;
+import kyonggiyo.application.auth.domain.vo.UserInfo;
 import kyonggiyo.application.port.in.review.dto.ReviewCreateCommand;
 import kyonggiyo.application.port.in.review.dto.ReviewUpdateCommand;
 import kyonggiyo.application.port.out.restaurant.LoadRestaurantPort;
@@ -53,7 +53,7 @@ class ReviewCommandServiceTest extends ServiceTest {
     @Test
     void 유저의_요청을_통해_리뷰를_생성한다() {
         // given
-        User reviewer = UserFixtures.generateUserEntity();
+        User reviewer = UserFixtures.INSTANCE.generateEntity();
         UserInfo userInfo = new UserInfo(reviewer.getId(), reviewer.getRole());
         Restaurant restaurant = RestaurantFixtures.generateRestaurantEntityWithoutReview();
         ReviewCreateCommand request = Instancio.create(ReviewCreateCommand.class);
@@ -82,7 +82,7 @@ class ReviewCommandServiceTest extends ServiceTest {
     @Test
     void 작성자의_요청을_통해_리뷰를_수정한다() {
         // given
-        User reviewer = UserFixtures.generateUserEntity();
+        User reviewer = UserFixtures.INSTANCE.generateEntity();
         UserInfo userInfo = new UserInfo(reviewer.getId(), reviewer.getRole());
         Restaurant restaurant = RestaurantFixtures.generateRestaurantEntityWithoutReview();
         ReviewUpdateCommand request = Instancio.create(ReviewUpdateCommand.class);
@@ -107,7 +107,7 @@ class ReviewCommandServiceTest extends ServiceTest {
     @Test
     void 작성자의_요청을_통해_리뷰를_삭제한다() {
         // given
-        User reviewer = UserFixtures.generateUserEntity();
+        User reviewer = UserFixtures.INSTANCE.generateEntity();
         UserInfo userInfo = new UserInfo(reviewer.getId(), reviewer.getRole());
         Restaurant restaurant = RestaurantFixtures.generateRestaurantEntityWithoutReview();
         ReviewUpdateCommand request = Instancio.create(ReviewUpdateCommand.class);

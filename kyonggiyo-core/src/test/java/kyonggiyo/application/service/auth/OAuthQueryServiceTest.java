@@ -1,9 +1,10 @@
 package kyonggiyo.application.service.auth;
 
-import kyonggiyo.application.port.out.auth.LoadOAuthTokenPort;
-import kyonggiyo.application.port.out.auth.LoadOAuthUserInfoPort;
+import kyonggiyo.application.auth.domain.vo.Platform;
+import kyonggiyo.application.auth.port.outbound.LoadOAuthTokenPort;
+import kyonggiyo.application.auth.port.outbound.LoadOAuthUserInfoPort;
+import kyonggiyo.application.auth.service.OAuthQueryService;
 import kyonggiyo.application.service.ServiceTest;
-import kyonggiyo.domain.auth.Platform;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

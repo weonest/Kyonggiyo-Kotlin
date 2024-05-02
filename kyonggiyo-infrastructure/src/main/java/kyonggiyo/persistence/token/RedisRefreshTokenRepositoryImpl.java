@@ -1,8 +1,8 @@
 package kyonggiyo.persistence.token;
 
-import kyonggiyo.domain.auth.RefreshToken;
-import kyonggiyo.domain.auth.exception.ExpiredTokenException;
-import kyonggiyo.domain.auth.exception.TokenErrorCode;
+import kyonggiyo.application.auth.domain.entity.RefreshToken;
+import kyonggiyo.application.auth.domain.exception.ExpiredTokenException;
+import kyonggiyo.common.exception.GlobalErrorCode;
 import kyonggiyo.persistence.token.entity.RefreshTokenEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -21,7 +21,7 @@ public class RedisRefreshTokenRepositoryImpl implements RefreshTokenRepository {
     @Override
     public RefreshToken getByUserId(Long userId) {
         RefreshTokenEntity refreshTokenEntity = redisRepository.findById(userId)
-                .orElseThrow(() -> new ExpiredTokenException(TokenErrorCode.EXPIRED_TOKEN_EXCEPTION));
+                .orElseThrow(() -> new ExpiredTokenException(GlobalErrorCode.NO_AUTHENTICATION_INFO_EXCEPTION));
         return refreshTokenEntity.toDomain();
     }
 

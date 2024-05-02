@@ -1,9 +1,9 @@
 package kyonggiyo.application.port.in.candidate;
 
-import kyonggiyo.application.port.in.auth.dto.UserInfo;
+import kyonggiyo.application.auth.domain.vo.UserInfo;
 import kyonggiyo.application.port.in.candidate.dto.CandidateResponse;
-import kyonggiyo.domain.candidate.Status;
 import kyonggiyo.common.response.SliceResponse;
+import kyonggiyo.domain.candidate.Status;
 
 public interface LoadCandidateUseCase {
 

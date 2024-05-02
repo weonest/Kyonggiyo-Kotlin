@@ -2,12 +2,12 @@ package kyonggiyo.auth.filter;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
-import kyonggiyo.application.port.in.auth.dto.AuthInfo;
+import kyonggiyo.application.auth.domain.vo.AuthInfo;
 import kyonggiyo.application.port.in.auth.dto.TokenResponse;
-import kyonggiyo.application.service.auth.TokenService;
+import kyonggiyo.application.auth.service.TokenService;
 import kyonggiyo.auth.AuthContext;
-import kyonggiyo.domain.auth.exception.ExpiredTokenException;
-import kyonggiyo.domain.auth.exception.TokenErrorCode;
+import kyonggiyo.application.auth.domain.exception.ExpiredTokenException;
+import kyonggiyo.application.auth.domain.exception.TokenErrorCode;
 import kyonggiyo.domain.user.Role;
 import kyonggiyo.common.exception.AuthenticationException;
 import org.instancio.Instancio;

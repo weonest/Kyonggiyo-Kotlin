@@ -1,7 +1,7 @@
 package kyonggiyo.persistence.account;
 
-import kyonggiyo.domain.auth.Account;
-import kyonggiyo.domain.auth.Platform;
+import kyonggiyo.application.auth.domain.entity.Account;
+import kyonggiyo.application.auth.domain.vo.Platform;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

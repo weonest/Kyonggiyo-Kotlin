@@ -2,14 +2,14 @@ package kyonggiyo.api.adapter.controller.auth;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kyonggiyo.application.port.in.auth.OAuthLoginUseCase;
-import kyonggiyo.application.port.in.auth.OAuthLogoutUseCase;
-import kyonggiyo.application.port.in.auth.ProvideAuthCodeUrlUseCase;
-import kyonggiyo.application.port.in.auth.dto.LogInResponse;
+import kyonggiyo.application.auth.domain.vo.UserInfo;
+import kyonggiyo.application.auth.port.inbound.LogInResponse;
+import kyonggiyo.application.auth.port.inbound.OAuthLoginUseCase;
+import kyonggiyo.application.auth.port.inbound.OAuthLogoutUseCase;
+import kyonggiyo.application.auth.port.inbound.ProvideAuthCodeUrlUseCase;
 import kyonggiyo.auth.Auth;
-import kyonggiyo.domain.auth.Platform;
-import kyonggiyo.application.port.in.auth.dto.UserInfo;
 import kyonggiyo.common.util.CookieUtils;
+import kyonggiyo.application.auth.domain.vo.Platform;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,9 +42,8 @@ public class AuthController {
     public ResponseEntity<LogInResponse> login(@PathVariable Platform platform, @RequestParam String code,
                                                HttpServletResponse httpServletResponse) {
         LogInResponse response = oAuthLoginUseCase.login(platform, code);
-
-        if (Objects.nonNull(response.token())) {
-            CookieUtils.setCookie(httpServletResponse, response.token());
+        if (Objects.nonNull(response.getToken())) {
+            CookieUtils.setCookie(httpServletResponse, response.getToken());
         }
 
         return ResponseEntity.ok(response);

@@ -1,21 +1,21 @@
 package kyonggiyo.application.service.auth;
 
-import kyonggiyo.application.port.in.auth.dto.AuthInfo;
+import kyonggiyo.application.auth.domain.entity.RefreshToken;
+import kyonggiyo.application.auth.domain.vo.AccessToken;
+import kyonggiyo.application.auth.domain.vo.AuthInfo;
+import kyonggiyo.application.auth.port.outbound.DeleteRefreshTokenPort;
+import kyonggiyo.application.auth.port.outbound.LoadRefreshTokenPort;
+import kyonggiyo.application.auth.port.outbound.SaveRefreshTokenPort;
+import kyonggiyo.application.auth.service.TokenManager;
+import kyonggiyo.application.auth.service.TokenService;
 import kyonggiyo.application.port.in.auth.dto.TokenResponse;
-import kyonggiyo.domain.auth.TokenManager;
-import kyonggiyo.application.port.out.auth.DeleteRefreshTokenPort;
-import kyonggiyo.application.port.out.auth.LoadRefreshTokenPort;
-import kyonggiyo.application.port.out.auth.SaveRefreshTokenPort;
 import kyonggiyo.application.service.ServiceTest;
-import kyonggiyo.domain.auth.AccessToken;
-import kyonggiyo.domain.auth.RefreshToken;
 import kyonggiyo.domain.user.User;
 import kyonggiyo.fixture.UserFixtures;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,7 +45,7 @@ class TokenServiceTest extends ServiceTest {
     @Test
     void 유저의_정보를_통해_토큰을_생성하고_반환할_수_있다() {
         // given
-        User user = UserFixtures.generateUserEntity();
+        User user = UserFixtures.INSTANCE.generateEntity();
         AccessToken accessToken = Instancio.create(AccessToken.class);
         RefreshToken refreshToken = Instancio.create(RefreshToken.class);
         TokenResponse tokenResponse = TokenResponse.builder()

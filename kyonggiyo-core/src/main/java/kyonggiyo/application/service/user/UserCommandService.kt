@@ -1,15 +1,15 @@
 package kyonggiyo.application.service.user
 
+import kyonggiyo.application.auth.domain.vo.Platform
+import kyonggiyo.application.auth.port.outbound.LoadAccountPort
 import kyonggiyo.application.port.`in`.user.CreateUserUseCase
 import kyonggiyo.application.port.`in`.user.WithdrawUserUseCase
 import kyonggiyo.application.port.`in`.user.dto.UserCreateCommand
 import kyonggiyo.application.port.`in`.user.dto.UserDeleteCommand
-import kyonggiyo.application.port.out.auth.LoadAccountPort
 import kyonggiyo.application.port.out.user.LoadUserPort
 import kyonggiyo.application.port.out.user.SaveUserPort
 import kyonggiyo.common.exception.GlobalErrorCode
 import kyonggiyo.common.exception.NotFoundException
-import kyonggiyo.domain.auth.Platform
 import kyonggiyo.domain.user.User
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
