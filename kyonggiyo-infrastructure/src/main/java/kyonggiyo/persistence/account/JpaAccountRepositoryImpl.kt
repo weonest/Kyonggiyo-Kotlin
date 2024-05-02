@@ -1,31 +1,25 @@
-package kyonggiyo.persistence.account;
+package kyonggiyo.persistence.account
 
-import kyonggiyo.application.auth.domain.entity.Account;
-import kyonggiyo.application.auth.domain.vo.Platform;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
+import kyonggiyo.application.auth.domain.entity.Account
+import kyonggiyo.application.auth.domain.vo.Platform
+import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Repository
 
 @Repository
-@RequiredArgsConstructor
-public class JpaAccountRepositoryImpl implements AccountRepository {
+class JpaAccountRepositoryImpl(
+        private val jpaRepository: AccountJpaRepository
+) : AccountRepository {
 
-    private final AccountJpaRepository jpaRepository;
-
-    @Override
-    public Optional<Account> findById(Long accountId) {
-        return jpaRepository.findById(accountId);
+    override fun findById(accountId: Long): Account? {
+        return jpaRepository.findByIdOrNull(accountId)
     }
 
-    @Override
-    public Optional<Account> findByPlatformAndPlatformId(Platform platform, String platformId) {
-        return jpaRepository.findByPlatformAndPlatformId(platform, platformId);
+    override fun findByPlatformAndPlatformId(platform: Platform, platformId: String): Account? {
+        return jpaRepository.findByPlatformAndPlatformId(platform, platformId)
     }
 
-    @Override
-    public Account save(Account account) {
-        return jpaRepository.save(account);
+    override fun save(account: Account): Account {
+        return jpaRepository.save(account)
     }
 
 }

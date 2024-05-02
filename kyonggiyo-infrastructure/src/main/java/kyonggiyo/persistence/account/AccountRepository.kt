@@ -1,16 +1,14 @@
-package kyonggiyo.persistence.account;
+package kyonggiyo.persistence.account
 
-import kyonggiyo.application.auth.domain.entity.Account;
-import kyonggiyo.application.auth.domain.vo.Platform;
+import kyonggiyo.application.auth.domain.entity.Account
+import kyonggiyo.application.auth.domain.vo.Platform
 
-import java.util.Optional;
+interface AccountRepository {
 
-public interface AccountRepository {
+    fun findById(accountId: Long): Account?
 
-    Optional<Account> findById(Long accountId);
+    fun findByPlatformAndPlatformId(platform: Platform, platformId: String): Account?
 
-    Optional<Account> findByPlatformAndPlatformId(Platform platform, String platformId);
-
-    Account save(Account account);
+    fun save(account: Account): Account
 
 }

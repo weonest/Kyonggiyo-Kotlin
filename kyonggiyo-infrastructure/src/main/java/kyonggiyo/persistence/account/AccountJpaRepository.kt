@@ -1,13 +1,11 @@
-package kyonggiyo.persistence.account;
+package kyonggiyo.persistence.account
 
-import kyonggiyo.application.auth.domain.entity.Account;
-import kyonggiyo.application.auth.domain.vo.Platform;
-import org.springframework.data.jpa.repository.JpaRepository;
+import kyonggiyo.application.auth.domain.entity.Account
+import kyonggiyo.application.auth.domain.vo.Platform
+import org.springframework.data.jpa.repository.JpaRepository
 
-import java.util.Optional;
+interface AccountJpaRepository : JpaRepository<Account, Long> {
 
-public interface AccountJpaRepository extends JpaRepository<Account, Long> {
-
-    Optional<Account> findByPlatformAndPlatformId(Platform platform, String platformId);
+    fun findByPlatformAndPlatformId(platform: Platform, platformId: String): Account?
 
 }
