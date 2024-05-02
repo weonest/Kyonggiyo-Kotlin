@@ -1,81 +1,68 @@
-package kyonggiyo.application.auth.service;
+package kyonggiyo.application.auth.service
 
-import kyonggiyo.application.auth.domain.entity.RefreshToken;
-import kyonggiyo.application.auth.domain.vo.AccessToken;
-import kyonggiyo.application.auth.domain.vo.AuthInfo;
-import kyonggiyo.application.auth.port.inbound.TokenResponse;
-import kyonggiyo.application.auth.port.outbound.DeleteRefreshTokenPort;
-import kyonggiyo.application.auth.port.outbound.LoadRefreshTokenPort;
-import kyonggiyo.application.auth.port.outbound.SaveRefreshTokenPort;
-import kyonggiyo.common.exception.AuthenticationException;
-import kyonggiyo.common.exception.GlobalErrorCode;
-import kyonggiyo.domain.user.Role;
-import kyonggiyo.domain.user.User;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Objects;
+import kyonggiyo.application.auth.domain.vo.AuthInfo
+import kyonggiyo.application.auth.port.inbound.TokenResponse
+import kyonggiyo.application.auth.port.outbound.DeleteRefreshTokenPort
+import kyonggiyo.application.auth.port.outbound.LoadRefreshTokenPort
+import kyonggiyo.application.auth.port.outbound.SaveRefreshTokenPort
+import kyonggiyo.common.exception.AuthenticationException
+import kyonggiyo.common.exception.GlobalErrorCode
+import kyonggiyo.domain.user.Role
+import kyonggiyo.domain.user.User
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Propagation
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-@RequiredArgsConstructor
-public class TokenService {
-
-    private final TokenManager tokenManager;
-    private final SaveRefreshTokenPort saveRefreshTokenPort;
-    private final DeleteRefreshTokenPort deleteRefreshTokenPort;
-    private final LoadRefreshTokenPort loadRefreshTokenPort;
+class TokenService(
+        private val tokenManager: TokenManager,
+        private val saveRefreshTokenPort: SaveRefreshTokenPort,
+        private val deleteRefreshTokenPort: DeleteRefreshTokenPort,
+        private val loadRefreshTokenPort: LoadRefreshTokenPort
+) {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public TokenResponse generateToken(User user) {
-        AccessToken accessToken = tokenManager.generateAccessToken(user.getId(), user.getRole());
-        RefreshToken refreshToken = tokenManager.generateRefreshToken(user.getId());
+    fun generateToken(user: User): TokenResponse {
+        val accessToken = tokenManager.generateAccessToken(user.id, user.role)
+        val refreshToken = tokenManager.generateRefreshToken(user.id)
+        saveRefreshTokenPort.save(refreshToken)
 
-        saveRefreshTokenPort.save(refreshToken);
-
-        // TODO: 2024-05-02 해당 클래스를 코틀린 파일로 변경
-        return TokenResponse.builder()
-                .accessToken(accessToken.value())
-                .accessTokenMaxAge(accessToken.expiresIn())
-                .refreshToken(refreshToken.getValue())
-                .refreshTokenMaxAge(refreshToken.getExpiresIn())
-                .build();
+        return TokenResponse(accessToken = accessToken.value,
+                accessTokenMaxAge = accessToken.expiresIn,
+                refreshToken = refreshToken.value,
+                refreshTokenMaxAge = refreshToken.expiresIn
+        )
     }
 
     @Transactional
-    public void deleteRefreshTokenByUserId(Long userId) {
-        deleteRefreshTokenPort.deleteByUserId(userId);
+    fun deleteRefreshTokenByUserId(userId: Long) {
+        deleteRefreshTokenPort.deleteByUserId(userId)
     }
 
-    public void validate(String token) {
-        tokenManager.validate(token);
+    fun validate(token: String) {
+        tokenManager.validate(token)
     }
 
-    public AuthInfo getAuthInfo(String token) {
-        return tokenManager.extract(token);
+    fun getAuthInfo(token: String): AuthInfo {
+        return tokenManager.extract(token)
     }
 
     @Transactional
-    public TokenResponse reissueToken(Long id, Role role, String refreshToken) {
-        RefreshToken retrivedRefreshToken = loadRefreshTokenPort.getByUserId(id);
+    fun reissueToken(id: Long, role: Role, refreshToken: String): TokenResponse {
+        loadRefreshTokenPort.getByUserId(id)
+                .let {
+                    if (!it.equals(refreshToken)) {
+                        throw AuthenticationException(GlobalErrorCode.NO_AUTHENTICATION_INFO_EXCEPTION)
+                    }
+                }
 
-        if (!Objects.equals(refreshToken, retrivedRefreshToken.getValue())){
-            throw new AuthenticationException(GlobalErrorCode.NO_AUTHENTICATION_INFO_EXCEPTION);
-        }
+        val newAccessToken = tokenManager.generateAccessToken(id, role)
+        val newRefreshToken = tokenManager.generateRefreshToken(id)
+        saveRefreshTokenPort.save(newRefreshToken)
 
-        AccessToken newAccessToken = tokenManager.generateAccessToken(id, role);
-        RefreshToken newRefreshToken = tokenManager.generateRefreshToken(id);
-
-        saveRefreshTokenPort.save(newRefreshToken);
-
-        // TODO: 2024-05-02 해당 클래스를 코틀린 파일로 변경
-        return TokenResponse.builder()
-                .accessToken(newAccessToken.value())
-                .accessTokenMaxAge(newAccessToken.expiresIn())
-                .refreshToken(newRefreshToken.getValue())
-                .refreshTokenMaxAge(newRefreshToken.getExpiresIn())
-                .build();
+        return TokenResponse(accessToken = newAccessToken.value,
+                accessTokenMaxAge = newAccessToken.expiresIn,
+                refreshToken = newRefreshToken.value,
+                refreshTokenMaxAge = newRefreshToken.expiresIn)
     }
-
 }
