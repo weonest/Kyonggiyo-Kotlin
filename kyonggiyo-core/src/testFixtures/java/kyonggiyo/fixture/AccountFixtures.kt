@@ -20,7 +20,7 @@ object AccountFixtures {
                 .sample()
     }
 
-    fun generateWithoutUserEntity(): Account {
+    fun generateEntityWithoutUser(): Account {
         return ReflectionMonkey.giveMeBuilder<Account>()
                 .setExp(Account::id, IdGenerator.getId())
                 .setExp(Account::platform, Arbitraries.of(Platform.KAKAO, Platform.NAVER))

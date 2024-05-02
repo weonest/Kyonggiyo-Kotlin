@@ -1,52 +1,67 @@
-package kyonggiyo.application.service.user;
+package kyonggiyo.application.service.user
 
-import kyonggiyo.application.port.in.user.CreateUserUseCase;
-import kyonggiyo.application.port.in.user.dto.UserCreateCommand;
-import kyonggiyo.application.port.out.auth.LoadAccountPort;
-import kyonggiyo.application.port.out.user.SaveUserPort;
-import kyonggiyo.application.service.ServiceTest;
-import kyonggiyo.domain.auth.Account;
-import kyonggiyo.domain.auth.Platform;
-import kyonggiyo.domain.user.User;
-import kyonggiyo.fixture.AccountFixtures;
-import kyonggiyo.fixture.UserFixtures;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
+import io.kotest.core.annotation.DisplayName
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
+import kyonggiyo.application.port.`in`.user.dto.UserCreateCommand
+import kyonggiyo.application.port.`in`.user.dto.UserDeleteCommand
+import kyonggiyo.application.port.out.auth.LoadAccountPort
+import kyonggiyo.application.port.out.user.LoadUserPort
+import kyonggiyo.application.port.out.user.SaveUserPort
+import kyonggiyo.fixture.AccountFixtures
+import kyonggiyo.fixture.UserFixtures
 
-import java.util.Optional;
+@DisplayName("UserCommandServiceTest")
+class UserCommandServiceTest : DescribeSpec({
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
+    val loadAccountPort = mockk<LoadAccountPort>()
+    val saveUserPort = mockk<SaveUserPort>()
+    val loadUserPort = mockk<LoadUserPort>()
 
-@ContextConfiguration(classes = UserCommandService.class)
-class UserCommandServiceTest extends ServiceTest {
+    val sut = UserCommandService(loadAccountPort, saveUserPort, loadUserPort)
 
-    @Autowired
-    private CreateUserUseCase createUserUseCase;
+    describe("유저 생성") {
+        context("유저 회원가입 요청이 주어지면") {
+            it("유저를 생성한다") {
+                // arrange
+                val account = AccountFixtures.generateEntityWithoutUser()
+                val command = UserCreateCommand(account.id!!, "새로운 유저")
+                val user = UserFixtures.generateEntity()
 
-    @MockBean
-    private LoadAccountPort loadAccountPort;
+                every { loadAccountPort.findById(command.accountId) } returns account
+                every { saveUserPort.save(any()) } returns user
 
-    @MockBean
-    private SaveUserPort saveUserPort;
+                // act
+                val result = sut.createUser(command)
 
-    @Test
-    void 유저_생성_요청을_통해_유저를_생성한다() {
-        // given
-        User user = UserFixtures.generateUserEntity();
-        Account account = AccountFixtures.generateAccountEntityWithoutUser();
-        UserCreateCommand command = new UserCreateCommand(account.getId(), user.getNickname());
-
-        given(loadAccountPort.findById(account.getId())).willReturn(Optional.of(account));
-        given(saveUserPort.save(user)).willReturn(user);
-
-        // when
-        Platform platform = createUserUseCase.createUser(command);
-
-        // then
-        assertThat(platform).isEqualTo(account.getPlatform());
+                // assert
+                verify(exactly = 1) { saveUserPort.save(any()) }
+                result shouldBe account.platform
+            }
+        }
     }
 
-}
+    describe("유저 탈퇴") {
+        context("유저 탈퇴 요청이 주어지면") {
+            it("유저를 소프트 딜리트 처리한다") {
+                // arrange
+                val account = AccountFixtures.generateEntity()
+                val command = UserDeleteCommand(account.id!!)
+                val user = UserFixtures.generateEntity(account.userId!!)
+
+                every { loadAccountPort.findById(command.accountId) } returns account
+                every { loadUserPort.getById(user.id!!) } returns user
+
+                // act
+                sut.deleteUser(command)
+
+                // assert
+                user.isDeleted shouldBe true
+            }
+        }
+    }
+
+})

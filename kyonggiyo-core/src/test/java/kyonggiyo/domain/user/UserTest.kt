@@ -12,7 +12,7 @@ class UserTest : DescribeSpec({
         context("정상 유저인 경우") {
             it("소프트 딜리트 처리한다") {
                 // arrange
-                val user = UserFixtures.generateUserEntity()
+                val user = UserFixtures.generateEntity()
 
                 // act
                 user.delete()
