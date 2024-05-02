@@ -1,16 +1,9 @@
-package kyonggiyo.application.auth.domain.exception;
+package kyonggiyo.application.auth.domain.exception
 
-import kyonggiyo.common.exception.AuthenticationException;
-import kyonggiyo.common.exception.ErrorCode;
+import kyonggiyo.common.exception.AuthenticationException
+import kyonggiyo.common.exception.ErrorCode
 
-public class ExpiredTokenException extends AuthenticationException {
-
-    public ExpiredTokenException(ErrorCode errorCode) {
-        super(errorCode);
-    }
-
-    public ExpiredTokenException(ErrorCode errorCode, String loggingMessage) {
-        super(errorCode, loggingMessage);
-    }
-
+class ExpiredTokenException : AuthenticationException {
+    constructor(errorCode: ErrorCode?) : super(errorCode!!)
+    constructor(errorCode: ErrorCode?, loggingMessage: String?) : super(errorCode!!, loggingMessage!!)
 }

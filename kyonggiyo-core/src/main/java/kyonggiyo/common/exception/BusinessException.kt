@@ -1,21 +1,18 @@
-package kyonggiyo.common.exception;
+package kyonggiyo.common.exception
 
-import lombok.Getter;
+abstract class BusinessException : RuntimeException {
 
-@Getter
-public abstract class BusinessException extends RuntimeException {
+    private val errorCode: ErrorCode
+    private val loggingMessage: String
 
-    private final ErrorCode errorCode;
-    private final String loggingMessage;
-
-    protected BusinessException(ErrorCode errorCode) {
-        this.errorCode = errorCode;
-        this.loggingMessage = errorCode.message();
+    protected constructor(errorCode: ErrorCode) {
+        this.errorCode = errorCode
+        loggingMessage = errorCode.message()
     }
 
-    protected BusinessException(ErrorCode errorCode, String loggingMessage) {
-        this.errorCode = errorCode;
-        this.loggingMessage = loggingMessage;
+    protected constructor(errorCode: ErrorCode, loggingMessage: String) {
+        this.errorCode = errorCode
+        this.loggingMessage = loggingMessage
     }
 
 }
