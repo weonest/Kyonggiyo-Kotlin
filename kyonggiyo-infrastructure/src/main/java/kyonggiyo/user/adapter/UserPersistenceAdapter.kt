@@ -1,9 +1,10 @@
-package kyonggiyo.persistence.user
+package kyonggiyo.user.adapter
 
 import kyonggiyo.application.user.port.outbound.ExistUserPort
 import kyonggiyo.application.user.port.outbound.LoadUserPort
 import kyonggiyo.application.user.port.outbound.SaveUserPort
 import kyonggiyo.application.user.domain.entity.User
+import kyonggiyo.user.repository.UserRepository
 import org.springframework.stereotype.Component
 
 @Component

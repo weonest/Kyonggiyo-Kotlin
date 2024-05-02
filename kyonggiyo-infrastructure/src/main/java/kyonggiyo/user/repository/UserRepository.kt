@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.user
+package kyonggiyo.user.repository
 
 import kyonggiyo.application.user.domain.entity.User
 

@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.user
+package kyonggiyo.user.repository
 
 import kyonggiyo.common.exception.GlobalErrorCode
 import kyonggiyo.common.exception.NotFoundException
