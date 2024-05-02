@@ -1,5 +1,7 @@
 package kyonggiyo.persistence.candidate;
 
+import kyonggiyo.candidate.adapter.CandidatePersistenceAdapter;
+import kyonggiyo.candidate.repository.CandidateJpaRepository;
 import kyonggiyo.persistence.AdapterTest;
 import kyonggiyo.domain.candidate.Candidate;
 import kyonggiyo.domain.candidate.Status;
