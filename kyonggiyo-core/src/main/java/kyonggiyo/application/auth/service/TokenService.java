@@ -69,6 +69,7 @@ public class TokenService {
 
         saveRefreshTokenPort.save(newRefreshToken);
 
+        // TODO: 2024-05-02 해당 클래스를 코틀린 파일로 변경
         return TokenResponse.builder()
                 .accessToken(newAccessToken.value())
                 .accessTokenMaxAge(newAccessToken.expiresIn())
