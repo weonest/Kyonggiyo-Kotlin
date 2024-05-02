@@ -1,11 +1,11 @@
-package kyonggiyo.application.image.port.outbound;
+package kyonggiyo.application.image.port.outbound
 
-public interface ImageManager {
+interface ImageManager {
 
-    String generatePresignedUrl(String filename);
+    fun generatePresignedUrl(filename: String): String
 
-    void deleteImage(String key);
+    fun deleteImage(key: String)
 
-    String extractImageKey(String imageUrl);
+    fun extractImageKey(imageUrl: String): String
 
 }

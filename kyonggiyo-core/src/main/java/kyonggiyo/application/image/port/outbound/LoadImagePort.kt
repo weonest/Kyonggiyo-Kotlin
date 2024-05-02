@@ -1,13 +1,12 @@
-package kyonggiyo.application.image.port.outbound;
+package kyonggiyo.application.image.port.outbound
 
-import kyonggiyo.application.image.domain.entity.Image;
-import kyonggiyo.application.image.domain.vo.ImageType;
+import kyonggiyo.application.image.domain.entity.Image
+import kyonggiyo.application.image.domain.vo.ImageType
 
-import java.util.List;
+interface LoadImagePort {
 
-public interface LoadImagePort {
+    fun findAllByImageTypeAndReferenceId(imageType: ImageType, referenceId: Long): List<Image>
 
-    List<Image> findAllByImageTypeAndReferenceId(ImageType imageType, Long referenceId);
+    fun findAllByImageTypeAndReferenceIdIn(imageType: ImageType, ids: List<Long>): List<Image>
 
-    List<Image> findAllByImageTypeAndReferenceIdIn(ImageType imageType, List<Long> ids);
 }

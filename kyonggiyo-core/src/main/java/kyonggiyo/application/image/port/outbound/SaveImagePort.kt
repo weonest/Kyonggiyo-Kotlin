@@ -1,13 +1,11 @@
-package kyonggiyo.application.image.port.outbound;
+package kyonggiyo.application.image.port.outbound
 
-import kyonggiyo.application.image.domain.entity.Image;
+import kyonggiyo.application.image.domain.entity.Image
 
-import java.util.List;
-
-public interface SaveImagePort {
-
-    List<Image> saveAll(List<Image> images);
-
-    void saveAllInBatch(List<Image> images);
+interface SaveImagePort {
+    
+    fun saveAll(images: List<Image>): List<Image>
+    
+    fun saveAllInBatch(images: List<Image>)
 
 }

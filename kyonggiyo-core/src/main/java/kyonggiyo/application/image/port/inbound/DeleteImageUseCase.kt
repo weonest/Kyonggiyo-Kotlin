@@ -1,7 +1,12 @@
-package kyonggiyo.application.image.port.inbound;
+package kyonggiyo.application.image.port.inbound
 
-public interface DeleteImageUseCase {
+interface DeleteImageUseCase {
 
-    void deleteById(ImageDeleteCommand command);
+    fun deleteById(command: ImageDeleteCommand)
 
 }
+
+data class ImageDeleteCommand(
+        val id: Long,
+        val key: String
+)

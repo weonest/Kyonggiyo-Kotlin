@@ -1,11 +1,9 @@
-package kyonggiyo.application.image.port.outbound;
+package kyonggiyo.application.image.port.outbound
 
-import java.util.List;
+interface DeleteImagePort {
+    
+    fun deleteById(id: Long)
 
-public interface DeleteImagePort {
-
-    void deleteById(Long id);
-
-    void deleteAllByIdInBatch(List<Long> ids);
+    fun deleteAllByIdInBatch(ids: List<Long>)
 
 }
