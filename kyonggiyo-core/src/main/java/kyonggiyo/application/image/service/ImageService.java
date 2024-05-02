@@ -1,13 +1,13 @@
-package kyonggiyo.application.service.image;
+package kyonggiyo.application.image.service;
 
-import kyonggiyo.application.port.in.image.DeleteImageUseCase;
-import kyonggiyo.application.port.in.image.dto.ImageDeleteCommand;
-import kyonggiyo.application.port.out.image.DeleteImagePort;
-import kyonggiyo.application.port.out.image.ImageManager;
-import kyonggiyo.application.port.out.image.LoadImagePort;
-import kyonggiyo.application.port.out.image.SaveImagePort;
-import kyonggiyo.domain.image.Image;
-import kyonggiyo.domain.image.ImageType;
+import kyonggiyo.application.image.port.inbound.DeleteImageUseCase;
+import kyonggiyo.application.image.port.inbound.ImageDeleteCommand;
+import kyonggiyo.application.image.port.outbound.DeleteImagePort;
+import kyonggiyo.application.image.port.outbound.ImageManager;
+import kyonggiyo.application.image.port.outbound.LoadImagePort;
+import kyonggiyo.application.image.port.outbound.SaveImagePort;
+import kyonggiyo.application.image.domain.entity.Image;
+import kyonggiyo.application.image.domain.vo.ImageType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

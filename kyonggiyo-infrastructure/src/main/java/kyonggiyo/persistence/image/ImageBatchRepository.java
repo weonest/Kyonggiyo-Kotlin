@@ -1,6 +1,6 @@
 package kyonggiyo.persistence.image;
 
-import kyonggiyo.domain.image.Image;
+import kyonggiyo.application.image.domain.entity.Image;
 
 import java.util.List;
 

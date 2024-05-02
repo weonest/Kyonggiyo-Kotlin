@@ -1,6 +1,6 @@
 package kyonggiyo.api.adapter.controller.image.dto;
 
-import kyonggiyo.application.port.in.image.dto.ImageDeleteCommand;
+import kyonggiyo.application.image.port.inbound.ImageDeleteCommand;
 
 public record ImageDeleteRequest(
         Long id,

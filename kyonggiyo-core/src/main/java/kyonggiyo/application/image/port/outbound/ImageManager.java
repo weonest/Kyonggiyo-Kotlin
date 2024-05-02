@@ -1,4 +1,4 @@
-package kyonggiyo.application.port.out.image;
+package kyonggiyo.application.image.port.outbound;
 
 public interface ImageManager {
 

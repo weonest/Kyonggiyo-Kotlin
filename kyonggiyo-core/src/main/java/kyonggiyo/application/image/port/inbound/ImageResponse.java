@@ -1,6 +1,6 @@
-package kyonggiyo.application.port.in.image.dto;
+package kyonggiyo.application.image.port.inbound;
 
-import kyonggiyo.domain.image.Image;
+import kyonggiyo.application.image.domain.entity.Image;
 
 public record ImageResponse(
         Long id,

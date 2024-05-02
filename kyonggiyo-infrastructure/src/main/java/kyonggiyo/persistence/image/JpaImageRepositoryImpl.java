@@ -1,7 +1,7 @@
 package kyonggiyo.persistence.image;
 
-import kyonggiyo.domain.image.Image;
-import kyonggiyo.domain.image.ImageType;
+import kyonggiyo.application.image.domain.entity.Image;
+import kyonggiyo.application.image.domain.vo.ImageType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

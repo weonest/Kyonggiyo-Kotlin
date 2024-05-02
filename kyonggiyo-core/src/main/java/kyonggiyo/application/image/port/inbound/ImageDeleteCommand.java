@@ -1,4 +1,4 @@
-package kyonggiyo.application.port.in.image.dto;
+package kyonggiyo.application.image.port.inbound;
 
 public record ImageDeleteCommand(
         Long id,
