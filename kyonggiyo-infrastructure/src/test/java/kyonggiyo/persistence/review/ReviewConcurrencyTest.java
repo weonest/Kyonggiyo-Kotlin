@@ -1,10 +1,10 @@
 package kyonggiyo.persistence.review;
 
 import kyonggiyo.application.auth.domain.vo.UserInfo;
-import kyonggiyo.application.port.in.review.dto.ReviewCreateCommand;
-import kyonggiyo.application.service.review.ReviewCommandService;
+import kyonggiyo.application.review.port.inbound.ReviewCreateCommand;
+import kyonggiyo.application.review.service.ReviewCommandService;
 import kyonggiyo.domain.restaurant.Restaurant;
-import kyonggiyo.domain.review.Review;
+import kyonggiyo.application.review.domain.entity.Review;
 import kyonggiyo.application.user.domain.entity.User;
 import kyonggiyo.fixture.RestaurantFixtures;
 import kyonggiyo.persistence.restaurant.RestaurantJpaRepository;

@@ -1,9 +1,10 @@
-package kyonggiyo.domain.event;
+package kyonggiyo.application.review.event.entity;
 
 import jakarta.persistence.Convert;
 import jakarta.persistence.Embeddable;
 import kyonggiyo.common.exception.GlobalErrorCode;
 import kyonggiyo.common.exception.InvalidValueException;
+import kyonggiyo.domain.event.EventCommand;
 import kyonggiyo.domain.event.util.EventCommandConverter;
 import lombok.AccessLevel;
 import lombok.Builder;

@@ -1,6 +1,6 @@
 package kyonggiyo.application.port.out.event.image;
 
-import kyonggiyo.domain.event.ReviewEvent;
+import kyonggiyo.application.review.event.entity.ReviewEvent;
 
 import java.util.List;
 

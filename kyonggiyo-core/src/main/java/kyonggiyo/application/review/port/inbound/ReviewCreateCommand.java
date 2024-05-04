@@ -1,4 +1,4 @@
-package kyonggiyo.application.port.in.review.dto;
+package kyonggiyo.application.review.port.inbound;
 
 import java.util.List;
 

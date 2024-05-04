@@ -2,7 +2,7 @@ package kyonggiyo.persistence.restaurant.review;
 
 import kyonggiyo.common.exception.GlobalErrorCode;
 import kyonggiyo.common.exception.NotFoundException;
-import kyonggiyo.domain.review.Review;
+import kyonggiyo.application.review.domain.entity.Review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

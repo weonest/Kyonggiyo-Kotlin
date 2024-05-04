@@ -1,8 +1,8 @@
-package kyonggiyo.application.port.in.review.dto;
+package kyonggiyo.application.review.port.inbound;
 
 import kyonggiyo.application.image.port.inbound.ImageResponse;
 import kyonggiyo.application.port.in.user.dto.UserResponse;
-import kyonggiyo.domain.review.Review;
+import kyonggiyo.application.review.domain.entity.Review;
 
 import java.time.LocalDateTime;
 import java.util.List;

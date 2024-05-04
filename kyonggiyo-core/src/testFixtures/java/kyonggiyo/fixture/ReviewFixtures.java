@@ -1,7 +1,7 @@
 package kyonggiyo.fixture;
 
 import kyonggiyo.domain.restaurant.Restaurant;
-import kyonggiyo.domain.review.Review;
+import kyonggiyo.application.review.domain.entity.Review;
 
 public class ReviewFixtures {
     

@@ -1,4 +1,4 @@
-package kyonggiyo.application.port.in.review;
+package kyonggiyo.application.review.port.inbound;
 
 
 import kyonggiyo.application.auth.domain.vo.UserInfo;

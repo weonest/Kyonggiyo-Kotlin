@@ -1,8 +1,9 @@
-package kyonggiyo.application.service.event.review;
+package kyonggiyo.application.review.event.retry;
 
 import kyonggiyo.application.image.service.ImageService;
+import kyonggiyo.application.review.service.ReviewEventService;
 import kyonggiyo.domain.event.EventCommand;
-import kyonggiyo.domain.event.ReviewEvent;
+import kyonggiyo.application.review.event.entity.ReviewEvent;
 import kyonggiyo.application.image.domain.vo.ImageType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

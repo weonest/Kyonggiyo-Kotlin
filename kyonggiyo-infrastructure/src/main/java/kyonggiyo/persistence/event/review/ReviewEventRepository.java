@@ -1,6 +1,6 @@
 package kyonggiyo.persistence.event.review;
 
-import kyonggiyo.domain.event.ReviewEvent;
+import kyonggiyo.application.review.event.entity.ReviewEvent;
 
 import java.util.List;
 

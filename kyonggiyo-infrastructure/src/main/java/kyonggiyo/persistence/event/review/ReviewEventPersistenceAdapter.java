@@ -2,7 +2,7 @@ package kyonggiyo.persistence.event.review;
 
 import kyonggiyo.application.port.out.event.image.LoadReviewEventPort;
 import kyonggiyo.application.port.out.event.image.SaveReviewEventPort;
-import kyonggiyo.domain.event.ReviewEvent;
+import kyonggiyo.application.review.event.entity.ReviewEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
