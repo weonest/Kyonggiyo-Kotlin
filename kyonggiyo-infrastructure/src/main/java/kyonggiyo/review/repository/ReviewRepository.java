@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.restaurant.review;
+package kyonggiyo.review.repository;
 
 import kyonggiyo.application.review.domain.entity.Review;
 

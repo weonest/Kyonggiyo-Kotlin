@@ -1,11 +1,11 @@
 package kyonggiyo.persistence.restaurant;
 
-import kyonggiyo.persistence.AdapterTest;
+import kyonggiyo.AdapterTest;
 import kyonggiyo.domain.restaurant.Restaurant;
 import kyonggiyo.application.review.domain.entity.Review;
 import kyonggiyo.fixture.RestaurantFixtures;
 import kyonggiyo.fixture.ReviewFixtures;
-import kyonggiyo.persistence.restaurant.review.ReviewRepository;
+import kyonggiyo.review.repository.ReviewRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

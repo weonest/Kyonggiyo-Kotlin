@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.restaurant.review;
+package kyonggiyo.review.repository;
 
 import kyonggiyo.common.exception.GlobalErrorCode;
 import kyonggiyo.common.exception.NotFoundException;
