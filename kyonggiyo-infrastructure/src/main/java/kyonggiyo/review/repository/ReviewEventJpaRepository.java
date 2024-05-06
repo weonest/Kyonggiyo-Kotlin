@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.event.review;
+package kyonggiyo.review.repository;
 
 import kyonggiyo.application.review.event.entity.ReviewEvent;
 import org.springframework.data.jpa.repository.JpaRepository;

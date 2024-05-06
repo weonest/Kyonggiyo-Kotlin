@@ -1,6 +1,7 @@
-package kyonggiyo.client.oauth;
+package kyonggiyo.auth.client.kakao;
 
 import kyonggiyo.application.auth.domain.vo.Platform;
+import kyonggiyo.auth.client.OAuthClient;
 import kyonggiyo.common.property.KakaoOAuthProperties;
 import org.springframework.stereotype.Component;
 

@@ -1,8 +1,9 @@
-package kyonggiyo.persistence.event.review;
+package kyonggiyo.review.adapter;
 
 import kyonggiyo.application.review.port.outbound.LoadReviewEventPort;
 import kyonggiyo.application.review.port.outbound.SaveReviewEventPort;
 import kyonggiyo.application.review.event.entity.ReviewEvent;
+import kyonggiyo.review.repository.ReviewEventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

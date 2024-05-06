@@ -1,8 +1,10 @@
-package kyonggiyo.persistence.event.review;
+package kyonggiyo.review.repository;
 
 import kyonggiyo.common.exception.GlobalErrorCode;
 import kyonggiyo.common.exception.NotFoundException;
 import kyonggiyo.application.review.event.entity.ReviewEvent;
+import kyonggiyo.review.repository.ReviewEventJpaRepository;
+import kyonggiyo.review.repository.ReviewEventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

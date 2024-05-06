@@ -1,4 +1,4 @@
-package kyonggiyo.client.oauth;
+package kyonggiyo.auth.client.kakao;
 
 import kyonggiyo.client.oauth.response.KakaoUserInfoResponse;
 import org.springframework.cloud.openfeign.FeignClient;

@@ -1,4 +1,4 @@
-package kyonggiyo.persistence.restaurant;
+package kyonggiyo.restaurant.repository;
 
 import kyonggiyo.application.restaurant.domain.entity.Restaurant;
 import kyonggiyo.application.restaurant.domain.vo.RestaurantCategory;

@@ -1,9 +1,10 @@
-package kyonggiyo.persistence.restaurant;
+package kyonggiyo.restaurant.adapter;
 
 import kyonggiyo.application.restaurant.port.outbound.LoadRestaurantPort;
 import kyonggiyo.application.restaurant.port.outbound.SaveRestaurantPort;
 import kyonggiyo.application.restaurant.domain.entity.Restaurant;
 import kyonggiyo.application.restaurant.domain.vo.RestaurantCategory;
+import kyonggiyo.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

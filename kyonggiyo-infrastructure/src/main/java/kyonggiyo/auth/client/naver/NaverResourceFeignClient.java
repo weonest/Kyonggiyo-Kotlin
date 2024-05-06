@@ -1,4 +1,4 @@
-package kyonggiyo.client.oauth;
+package kyonggiyo.auth.client.naver;
 
 import kyonggiyo.client.oauth.response.OAuthUserInfoResponse;
 import org.springframework.cloud.openfeign.FeignClient;

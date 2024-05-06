@@ -7,7 +7,7 @@ import kyonggiyo.application.restaurant.domain.entity.Restaurant;
 import kyonggiyo.application.review.domain.entity.Review;
 import kyonggiyo.application.user.domain.entity.User;
 import kyonggiyo.fixture.RestaurantFixtures;
-import kyonggiyo.persistence.restaurant.RestaurantJpaRepository;
+import kyonggiyo.restaurant.repository.RestaurantJpaRepository;
 import kyonggiyo.review.repository.ReviewJpaRepository;
 import kyonggiyo.user.repository.UserRepository;
 import org.junit.jupiter.api.DisplayNameGeneration;

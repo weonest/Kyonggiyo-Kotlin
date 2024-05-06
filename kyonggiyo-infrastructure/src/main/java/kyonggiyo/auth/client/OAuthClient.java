@@ -1,4 +1,4 @@
-package kyonggiyo.client.oauth;
+package kyonggiyo.auth.client;
 
 import kyonggiyo.application.auth.domain.vo.Platform;
 import lombok.Getter;
