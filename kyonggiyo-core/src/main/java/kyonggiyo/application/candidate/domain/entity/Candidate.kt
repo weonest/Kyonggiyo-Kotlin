@@ -3,21 +3,21 @@ package kyonggiyo.application.candidate.domain.entity
 import jakarta.persistence.*
 import kyonggiyo.application.candidate.domain.vo.Status
 import kyonggiyo.domain.BaseEntity
-import kyonggiyo.domain.restaurant.Address
-import kyonggiyo.domain.restaurant.Restaurant
-import kyonggiyo.domain.restaurant.RestaurantCategory
+import kyonggiyo.application.restaurant.domain.vo.Address
+import kyonggiyo.application.restaurant.domain.entity.Restaurant
+import kyonggiyo.application.restaurant.domain.vo.RestaurantCategory
 
 @Entity
 @Table(name = "candidates")
 class Candidate(
-    name: String,
-    category: RestaurantCategory,
-    contact: String,
-    reason: String,
-    requesterId: Long,
-    address: String,
-    lat: Double,
-    lng: Double
+        name: String,
+        category: RestaurantCategory,
+        contact: String,
+        reason: String,
+        requesterId: Long,
+        address: String,
+        lat: Double,
+        lng: Double
 ): BaseEntity() {
 
     @Id
@@ -80,13 +80,13 @@ class Candidate(
 
     fun toRestaurant(): Restaurant {
         return Restaurant(
-            name = name,
-            category = category,
-            contact = contact,
-            address = address,
-            lat = address.lat,
-            lng = address.lng,
-            reason = reason
+                name = name,
+                category = category,
+                contact = contact,
+                address = address,
+                lat = address.lat,
+                lng = address.lng,
+                reason = reason
         )
     }
 }

@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import kyonggiyo.domain.BaseEntity;
-import kyonggiyo.domain.restaurant.Restaurant;
+import kyonggiyo.application.restaurant.domain.entity.Restaurant;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

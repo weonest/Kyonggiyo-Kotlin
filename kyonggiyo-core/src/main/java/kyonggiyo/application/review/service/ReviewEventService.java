@@ -1,7 +1,7 @@
 package kyonggiyo.application.review.service;
 
-import kyonggiyo.application.port.out.event.image.LoadReviewEventPort;
-import kyonggiyo.application.port.out.event.image.SaveReviewEventPort;
+import kyonggiyo.application.review.port.outbound.LoadReviewEventPort;
+import kyonggiyo.application.review.port.outbound.SaveReviewEventPort;
 import kyonggiyo.application.review.event.entity.ReviewEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

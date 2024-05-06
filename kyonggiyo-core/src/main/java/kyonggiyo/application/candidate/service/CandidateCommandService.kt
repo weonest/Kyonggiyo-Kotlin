@@ -5,7 +5,7 @@ import kyonggiyo.application.candidate.port.inbound.*
 import kyonggiyo.application.candidate.port.outbound.DeleteCandidatePort
 import kyonggiyo.application.candidate.port.outbound.LoadCandidatePort
 import kyonggiyo.application.candidate.port.outbound.SaveCandidatePort
-import kyonggiyo.application.port.out.restaurant.SaveRestaurantPort
+import kyonggiyo.application.restaurant.port.outbound.SaveRestaurantPort
 import kyonggiyo.application.user.domain.vo.Role
 import kyonggiyo.common.exception.ForbiddenException
 import kyonggiyo.common.exception.GlobalErrorCode
@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 class CandidateCommandService(
-    private val saveCandidatePort: SaveCandidatePort,
-    private val saveRestaurantPort: SaveRestaurantPort,
-    private val loadCandidatePort: LoadCandidatePort,
-    private val deleteCandidatePort: DeleteCandidatePort,
+        private val saveCandidatePort: SaveCandidatePort,
+        private val saveRestaurantPort: SaveRestaurantPort,
+        private val loadCandidatePort: LoadCandidatePort,
+        private val deleteCandidatePort: DeleteCandidatePort,
 ) : CreateCandidateUseCase, AcceptCandidateUseCase, UpdateCandidateUseCase, DeleteCandidateUseCase {
 
     override fun createCandidate(userInfo: UserInfo, command: CandidateCreateCommand) {

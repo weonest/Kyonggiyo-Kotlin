@@ -1,4 +1,4 @@
-package kyonggiyo.domain.restaurant;
+package kyonggiyo.application.restaurant.domain.entity;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -12,6 +12,8 @@ import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import kyonggiyo.domain.BaseEntity;
 import kyonggiyo.application.review.domain.entity.Review;
+import kyonggiyo.application.restaurant.domain.vo.Address;
+import kyonggiyo.application.restaurant.domain.vo.RestaurantCategory;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

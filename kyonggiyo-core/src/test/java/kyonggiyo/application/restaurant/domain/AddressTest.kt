@@ -3,7 +3,7 @@ package kyonggiyo.application.restaurant.domain
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
-import kyonggiyo.domain.restaurant.Address
+import kyonggiyo.application.restaurant.domain.vo.Address
 
 class AddressTest : DescribeSpec({
 

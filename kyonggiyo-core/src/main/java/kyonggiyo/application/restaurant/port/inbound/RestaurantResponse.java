@@ -1,8 +1,8 @@
-package kyonggiyo.application.port.in.restaurant.dto;
+package kyonggiyo.application.restaurant.port.inbound;
 
 import kyonggiyo.application.review.port.inbound.ReviewResponse;
-import kyonggiyo.domain.restaurant.Restaurant;
-import kyonggiyo.domain.restaurant.RestaurantCategory;
+import kyonggiyo.application.restaurant.domain.entity.Restaurant;
+import kyonggiyo.application.restaurant.domain.vo.RestaurantCategory;
 
 import java.util.List;
 

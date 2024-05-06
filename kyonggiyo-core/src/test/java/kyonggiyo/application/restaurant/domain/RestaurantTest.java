@@ -1,6 +1,6 @@
 package kyonggiyo.application.restaurant.domain;
 
-import kyonggiyo.domain.restaurant.Restaurant;
+import kyonggiyo.application.restaurant.domain.entity.Restaurant;
 import kyonggiyo.application.review.domain.entity.Review;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package kyonggiyo.application.port.in.restaurant.dto;
+package kyonggiyo.application.restaurant.port.inbound;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package kyonggiyo.domain.restaurant
+package kyonggiyo.application.restaurant.domain.vo
 
 import jakarta.persistence.Embeddable
 

@@ -4,7 +4,7 @@ import kyonggiyo.application.auth.domain.vo.UserInfo
 import kyonggiyo.application.candidate.domain.entity.Candidate
 import kyonggiyo.application.candidate.domain.vo.Status
 import kyonggiyo.common.response.SliceResponse
-import kyonggiyo.domain.restaurant.RestaurantCategory
+import kyonggiyo.application.restaurant.domain.vo.RestaurantCategory
 import java.time.LocalDateTime
 
 interface LoadCandidateUseCase {
@@ -14,16 +14,16 @@ interface LoadCandidateUseCase {
 }
 
 data class CandidateResponse(
-    val id: Long,
-    val name: String,
-    val category: RestaurantCategory,
-    val contact: String,
-    val address: String,
-    val lat: Double,
-    val lng: Double,
-    val reason: String,
-    val createdAt: LocalDateTime,
-    val requesterId: Long
+        val id: Long,
+        val name: String,
+        val category: RestaurantCategory,
+        val contact: String,
+        val address: String,
+        val lat: Double,
+        val lng: Double,
+        val reason: String,
+        val createdAt: LocalDateTime,
+        val requesterId: Long
 ) {
 
     companion object {

@@ -1,18 +1,18 @@
-package kyonggiyo.application.service.restaurant;
+package kyonggiyo.application.restaurant.service;
 
 import kyonggiyo.application.image.port.inbound.ImageResponse;
-import kyonggiyo.application.port.in.restaurant.LoadRestaurantUseCase;
-import kyonggiyo.application.port.in.restaurant.dto.RestaurantByKeywordQuery;
-import kyonggiyo.application.port.in.restaurant.dto.RestaurantCategoryQuery;
-import kyonggiyo.application.port.in.restaurant.dto.RestaurantMarkerResponse;
-import kyonggiyo.application.port.in.restaurant.dto.RestaurantResponse;
-import kyonggiyo.application.port.in.restaurant.dto.RestaurantSearchResponse;
+import kyonggiyo.application.restaurant.port.inbound.LoadRestaurantUseCase;
+import kyonggiyo.application.restaurant.port.inbound.RestaurantByKeywordQuery;
+import kyonggiyo.application.restaurant.port.inbound.RestaurantCategoryQuery;
+import kyonggiyo.application.restaurant.port.inbound.RestaurantMarkerResponse;
+import kyonggiyo.application.restaurant.port.inbound.RestaurantResponse;
+import kyonggiyo.application.restaurant.port.inbound.RestaurantSearchResponse;
 import kyonggiyo.application.review.port.inbound.ReviewResponse;
 import kyonggiyo.application.image.port.outbound.LoadImagePort;
-import kyonggiyo.application.port.out.restaurant.LoadRestaurantPort;
+import kyonggiyo.application.restaurant.port.outbound.LoadRestaurantPort;
 import kyonggiyo.application.image.domain.entity.Image;
 import kyonggiyo.application.image.domain.vo.ImageType;
-import kyonggiyo.domain.restaurant.Restaurant;
+import kyonggiyo.application.restaurant.domain.entity.Restaurant;
 import kyonggiyo.application.review.domain.entity.Review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package kyonggiyo.application.candidate.port.inbound
 
-import kyonggiyo.domain.restaurant.RestaurantCategory
+import kyonggiyo.application.restaurant.domain.vo.RestaurantCategory
 
 interface UpdateCandidateUseCase {
 
@@ -9,11 +9,11 @@ interface UpdateCandidateUseCase {
 }
 
 data class CandidateUpdateCommand(
-    val name: String,
-    val category: RestaurantCategory,
-    val contact: String,
-    val address: String,
-    val lat: Double,
-    val lng: Double,
-    val reason: String,
+        val name: String,
+        val category: RestaurantCategory,
+        val contact: String,
+        val address: String,
+        val lat: Double,
+        val lng: Double,
+        val reason: String,
 )

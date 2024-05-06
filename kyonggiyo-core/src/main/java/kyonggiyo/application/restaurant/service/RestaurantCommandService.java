@@ -1,9 +1,9 @@
-package kyonggiyo.application.service.restaurant;
+package kyonggiyo.application.restaurant.service;
 
-import kyonggiyo.application.port.in.restaurant.CreateRestaurantUseCase;
-import kyonggiyo.application.port.in.restaurant.dto.RestaurantCreateCommand;
-import kyonggiyo.application.port.out.restaurant.SaveRestaurantPort;
-import kyonggiyo.domain.restaurant.Restaurant;
+import kyonggiyo.application.restaurant.port.inbound.CreateRestaurantUseCase;
+import kyonggiyo.application.restaurant.port.inbound.RestaurantCreateCommand;
+import kyonggiyo.application.restaurant.port.outbound.SaveRestaurantPort;
+import kyonggiyo.application.restaurant.domain.entity.Restaurant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

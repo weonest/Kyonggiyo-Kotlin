@@ -1,4 +1,4 @@
-package kyonggiyo.application.port.out.event.image;
+package kyonggiyo.application.review.port.outbound;
 
 import kyonggiyo.application.review.event.entity.ReviewEvent;
 

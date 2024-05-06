@@ -1,7 +1,7 @@
 package kyonggiyo.persistence.restaurant;
 
 import kyonggiyo.AdapterTest;
-import kyonggiyo.domain.restaurant.Restaurant;
+import kyonggiyo.application.restaurant.domain.entity.Restaurant;
 import kyonggiyo.application.review.domain.entity.Review;
 import kyonggiyo.fixture.RestaurantFixtures;
 import kyonggiyo.fixture.ReviewFixtures;
