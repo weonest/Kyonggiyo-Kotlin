@@ -1,10 +1,7 @@
 package kyonggiyo.fixture;
 
-import kyonggiyo.domain.restaurant.Restaurant;
-import kyonggiyo.domain.review.Review;
-//import org.springframework.test.util.ReflectionTestUtils;
-
-import java.time.LocalDateTime;
+import kyonggiyo.application.restaurant.domain.entity.Restaurant;
+import kyonggiyo.application.review.domain.entity.Review;
 
 public class ReviewFixtures {
     

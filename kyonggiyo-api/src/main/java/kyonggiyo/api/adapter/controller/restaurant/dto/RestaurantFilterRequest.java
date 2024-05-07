@@ -1,8 +1,8 @@
 package kyonggiyo.api.adapter.controller.restaurant.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import kyonggiyo.application.port.in.restaurant.dto.RestaurantCategoryQuery;
-import kyonggiyo.domain.restaurant.RestaurantCategory;
+import kyonggiyo.application.restaurant.port.inbound.RestaurantCategoryQuery;
+import kyonggiyo.application.restaurant.domain.vo.RestaurantCategory;
 
 import java.util.Arrays;
 import java.util.List;

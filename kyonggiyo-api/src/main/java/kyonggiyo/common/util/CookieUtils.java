@@ -3,7 +3,7 @@ package kyonggiyo.common.util;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kyonggiyo.application.port.in.auth.dto.TokenResponse;
+import kyonggiyo.application.auth.port.inbound.TokenResponse;
 import kyonggiyo.common.exception.AuthenticationException;
 import kyonggiyo.common.exception.GlobalErrorCode;
 import org.springframework.http.HttpHeaders;
@@ -19,12 +19,12 @@ public class CookieUtils {
     }
 
     public static void setCookie(HttpServletResponse httpServletResponse, TokenResponse tokenResponse) {
-        ResponseCookie cookie = ResponseCookie.from(REFRESH_TOKEN, tokenResponse.refreshToken())
+        ResponseCookie cookie = ResponseCookie.from(REFRESH_TOKEN, tokenResponse.getRefreshToken())
                 .path("/")
                 .sameSite("None")
                 .httpOnly(true)
                 .secure(true)
-                .maxAge(tokenResponse.refreshTokenMaxAge())
+                .maxAge(tokenResponse.getRefreshTokenMaxAge())
                 .build();
 
         httpServletResponse.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());

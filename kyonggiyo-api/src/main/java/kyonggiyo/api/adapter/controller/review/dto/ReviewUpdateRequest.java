@@ -1,6 +1,6 @@
 package kyonggiyo.api.adapter.controller.review.dto;
 
-import kyonggiyo.application.port.in.review.dto.ReviewUpdateCommand;
+import kyonggiyo.application.review.port.inbound.ReviewUpdateCommand;
 
 import java.util.List;
 

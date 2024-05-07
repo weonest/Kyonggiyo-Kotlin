@@ -1,29 +1,16 @@
 package kyonggiyo.api.adapter.controller.candidate;
 
 import kyonggiyo.api.adapter.controller.candidate.dto.CandidateCreateRequest;
-import kyonggiyo.application.port.in.candidate.dto.CandidateResponse;
 import kyonggiyo.api.adapter.controller.candidate.dto.CandidateUpdateRequest;
-import kyonggiyo.application.port.in.candidate.AcceptCandidateUseCase;
-import kyonggiyo.application.port.in.candidate.CreateCandidateUseCase;
-import kyonggiyo.application.port.in.candidate.DeleteCandidateUseCase;
-import kyonggiyo.application.port.in.candidate.LoadCandidateUseCase;
-import kyonggiyo.application.port.in.candidate.UpdateCandidateUseCase;
-import kyonggiyo.domain.candidate.Status;
+import kyonggiyo.application.auth.domain.vo.UserInfo;
+import kyonggiyo.application.candidate.domain.vo.Status;
+import kyonggiyo.application.candidate.port.inbound.*;
 import kyonggiyo.auth.Admin;
 import kyonggiyo.auth.Auth;
-import kyonggiyo.application.port.in.auth.dto.UserInfo;
 import kyonggiyo.common.response.SliceResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor

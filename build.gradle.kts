@@ -75,6 +75,7 @@ subprojects {
         // lombok
         compileOnly("org.projectlombok:lombok")
         annotationProcessor("org.projectlombok:lombok")
+        implementation("io.github.oshai:kotlin-logging-jvm:5.1.1")
 
         // Test
         val mockkVersion = "1.13.7"

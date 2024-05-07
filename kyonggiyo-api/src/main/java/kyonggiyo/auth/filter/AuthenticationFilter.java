@@ -5,11 +5,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kyonggiyo.application.port.in.auth.dto.AuthInfo;
-import kyonggiyo.application.port.in.auth.dto.TokenResponse;
-import kyonggiyo.application.service.auth.TokenService;
+import kyonggiyo.application.auth.domain.vo.AuthInfo;
+import kyonggiyo.application.auth.port.inbound.TokenResponse;
+import kyonggiyo.application.auth.service.TokenService;
 import kyonggiyo.auth.AuthContext;
-import kyonggiyo.domain.auth.exception.ExpiredTokenException;
+import kyonggiyo.application.auth.domain.exception.ExpiredTokenException;
 import kyonggiyo.common.exception.AuthenticationException;
 import kyonggiyo.common.exception.GlobalErrorCode;
 import kyonggiyo.common.util.CookieUtils;
@@ -58,7 +58,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         } catch (ExpiredTokenException expiredTokenException) {
             Cookie refreshTokenCookie = CookieUtils.getRefreshTokenCookie(request);
             tokenService.validate(refreshTokenCookie.getValue());
-            TokenResponse tokenResponse = tokenService.reissueToken(authInfo.userId(), refreshTokenCookie.getValue());
+            TokenResponse tokenResponse = tokenService.reissueToken(authInfo.userId(), authInfo.role(), refreshTokenCookie.getValue());
             renewToken(response, tokenResponse);
         }
         authContext.registerAuthInfo(authInfo);
@@ -81,7 +81,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     }
 
     private void renewToken(HttpServletResponse response, TokenResponse tokenResponse) {
-        response.addHeader(HttpHeaders.AUTHORIZATION, tokenResponse.accessToken());
+        response.addHeader(HttpHeaders.AUTHORIZATION, tokenResponse.getAccessToken());
         CookieUtils.setCookie(response, tokenResponse);
     }
 

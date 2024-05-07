@@ -4,10 +4,10 @@ import kyonggiyo.api.adapter.controller.user.dto.UserCreateRequest
 import kyonggiyo.api.adapter.controller.user.dto.UserDeleteRequest
 import kyonggiyo.api.adapter.controller.user.dto.ValidateNicknameRequest
 import kyonggiyo.api.adapter.controller.user.dto.ValidateNicknameResponse
-import kyonggiyo.application.port.`in`.auth.ProvideAuthCodeUrlUseCase
-import kyonggiyo.application.port.`in`.user.CreateUserUseCase
-import kyonggiyo.application.port.`in`.user.ValidateNicknameUseCase
-import kyonggiyo.application.port.`in`.user.WithdrawUserUseCase
+import kyonggiyo.application.auth.port.inbound.ProvideAuthCodeUrlUseCase
+import kyonggiyo.application.user.port.inbound.CreateUserUseCase
+import kyonggiyo.application.user.port.inbound.ValidateNicknameUseCase
+import kyonggiyo.application.user.port.inbound.WithdrawUserUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

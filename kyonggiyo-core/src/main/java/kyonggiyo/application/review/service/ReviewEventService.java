@@ -1,0 +1,42 @@
+package kyonggiyo.application.review.service;
+
+import kyonggiyo.application.review.port.outbound.LoadReviewEventPort;
+import kyonggiyo.application.review.port.outbound.SaveReviewEventPort;
+import kyonggiyo.application.review.event.entity.ReviewEvent;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
+import java.util.List;
+
+
+@Slf4j
+@Component
+@RequiredArgsConstructor
+public class ReviewEventService {
+
+    private final SaveReviewEventPort saveReviewEventPort;
+    private final LoadReviewEventPort loadReviewEventPort;
+
+    @Transactional
+    public void createEvent(ReviewEvent event) {
+        saveReviewEventPort.save(event);
+    }
+
+    @Transactional
+    public void successEvent(Long id) {
+        ReviewEvent event = loadReviewEventPort.getById(id);
+        event.successEvent();
+    }
+
+    public String convertImageUrlsToString(List<String> imageUrls) {
+        return String.join(",", imageUrls);
+    }
+
+    public List<String> convertImageUrlsToList(String imageUrls) {
+        return Arrays.stream(imageUrls.split(",")).toList();
+    }
+
+}
